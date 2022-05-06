@@ -1,0 +1,13 @@
+{
+    "scripts": {
+        "testDemo": "testcafe chrome tests/Session1/firstFile.js"
+    },
+    "dependencies": {
+        "testcafe": "^1.18.6"
+    },
+    "devDependencies": {
+        "eslint": "^8.14.0",
+        "eslint-plugin-react": "^7.29.4",
+        "eslint-plugin-testcafe": "^0.2.1"
+    }
+}
