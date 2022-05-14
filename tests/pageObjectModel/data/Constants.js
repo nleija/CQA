@@ -15,10 +15,3 @@ export const CREDENTIALS = {
     PASSWORD: process.env.STANDARD_USER_PASSWORD,
   },
 }
-
-export const CREDUP = {
-  STD_USER: {
-    USRN: "norma.leija@wizeline.com",
-    PSWD: "feedCat-4791#",
-  },
-}
