@@ -1,6 +1,8 @@
 {
   "scripts": {
     "test": "testcafe chrome tests/pageObjectModel/tests",
+    "test-login": "testcafe chrome tests/pageObjectModel/tests -f 'Testing Login page'",
+    "test-today": "testcafe chrome tests/pageObjectModel/tests -f 'Testing Today page'",
     "testDemo": "testcafe chrome tests/Session1/firstFile.js",
     "test:pom": "testcafe chrome tests/pageObjectModel/tests/*.js --skip-js-errors",
     "lint": "eslint tests/pageObjectModel/"
@@ -12,6 +14,7 @@
   "devDependencies": {
     "eslint": "^8.14.0",
     "eslint-plugin-react": "^7.29.4",
-    "eslint-plugin-testcafe": "^0.2.1"
+    "eslint-plugin-testcafe": "^0.2.1",
+    "newman": "^5.3.2"
   }
 }

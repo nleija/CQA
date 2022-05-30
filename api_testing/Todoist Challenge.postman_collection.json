@@ -1,0 +1,1616 @@
+{
+	"info": {
+		"_postman_id": "21775401-392f-4f6e-b808-ac27dbcac14e",
+		"name": "Todoist Challenge",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Projects",
+			"item": [
+				{
+					"name": "Get all projects",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"var SchemaDef = {",
+									"    \"$schema\": \"http://json-schema.org/draft-06/schema#\",",
+									"    \"type\": \"array\",",
+									"    \"items\": {",
+									"        \"$ref\": \"#/definitions/Welcome9Element\"",
+									"    },",
+									"    \"definitions\": {",
+									"        \"Welcome9Element\": {",
+									"            \"type\": \"object\",",
+									"            \"additionalProperties\": false,",
+									"            \"properties\": {",
+									"                \"id\": {",
+									"                    \"type\": \"integer\"",
+									"                },",
+									"                \"color\": {",
+									"                    \"type\": \"integer\"",
+									"                },",
+									"                \"name\": {",
+									"                    \"type\": \"string\"",
+									"                },",
+									"                \"comment_count\": {",
+									"                    \"type\": \"integer\"",
+									"                },",
+									"                \"shared\": {",
+									"                    \"type\": \"boolean\"",
+									"                },",
+									"                \"favorite\": {",
+									"                    \"type\": \"boolean\"",
+									"                },",
+									"                \"sync_id\": {",
+									"                    \"type\": \"integer\"",
+									"                },",
+									"                \"inbox_project\": {",
+									"                    \"type\": \"boolean\"",
+									"                },",
+									"                \"url\": {",
+									"                    \"type\": \"string\",",
+									"                    \"format\": \"uri\",",
+									"                    \"qt-uri-protocols\": [",
+									"                        \"https\"",
+									"                    ]",
+									"                },",
+									"                \"order\": {",
+									"                    \"type\": \"integer\"",
+									"                }",
+									"            },",
+									"            \"required\": [",
+									"                \"color\",",
+									"                \"comment_count\",",
+									"                \"favorite\",",
+									"                \"id\",",
+									"                \"name\",",
+									"                \"shared\",",
+									"                \"sync_id\",",
+									"                \"url\"",
+									"            ],",
+									"            \"title\": \"Welcome9Element\"",
+									"        }",
+									"    }",
+									"}",
+									"",
+									"",
+									"pm.test(\"Validate that the Schema is valid\", function() {",
+									"    pm.expect(tv4.validate(jsonData, SchemaDef)).to.be.true;",
+									"})",
+									"",
+									"pm.test(\"Validate that the Status code is 200\", function () {",
+									"pm.response.to.have.status(200);",
+									"console.log(\"Status Code: \" + pm.response.status);",
+									"});",
+									"",
+									"pm.test(\"Validate if the Response time is less than limit\", function() {",
+									"var limit = 3000;",
+									"pm.expect(pm.response.responseTime, \"Response time was longer than \" + limit + \" ms.\").to.be.below(limit);",
+									"console.log(\"Response Time: \" + pm.response.responseTime + \" ms\" + \" / Response Date: \" + pm.response.headers.get(\"Date\"));",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{protocol}}://{{url}}/{{architecture}}/{{version}}/projects/",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{architecture}}",
+								"{{version}}",
+								"projects",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all projects - URL incorrect",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//Validating that the Status code received is Not found, due to the URL is incorrect",
+									"pm.test(\"Validate that the Status code is 404 - Not found\", function () {",
+									"pm.response.to.have.status(404);",
+									"console.log(\"Status Code: \" + pm.response.status);",
+									"});",
+									"",
+									"const txtData = pm.response.text();",
+									"pm.test(\"Validate the text received in the response\", function () {",
+									"    pm.expect(txtData).contains(\"Sorry, the page you're looking for isn’t here anymore\")",
+									"})",
+									"",
+									"pm.test(\"Validate if the Response time is less than limit\", function() {",
+									"var limit = 500;",
+									"pm.expect(pm.response.responseTime, \"Response time was longer than \" + limit + \" ms.\").to.be.below(limit);",
+									"console.log(\"Response Time: \" + pm.response.responseTime + \" ms\" + \" / Response Date: \" + pm.response.headers.get(\"Date\"));",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{protocol}}://{{url}}/{{architecture}}/{{version}}/project/",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{architecture}}",
+								"{{version}}",
+								"project",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create a new project",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// jsonData will contain the JSON object from the response body",
+									"let jsonData = pm.response.json();",
+									"",
+									"// Setting the \"project id\" collection variable",
+									"pm.collectionVariables.set(\"projectID\", jsonData.id);",
+									"",
+									"pm.test(\"Validate that the Status code should be 200\", () => {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Validate that the Project name should match\", () => {",
+									"    pm.expect(jsonData.name).to.be.eql(pm.collectionVariables.get(\"projectNAME\"));",
+									"    console.log(\"The project with name: \" + jsonData.name + \" has been created\" );",
+									"});",
+									"",
+									"pm.test(\"Validate if the Response time is less than limit\", function() {",
+									"var limit = 3000;",
+									"pm.expect(pm.response.responseTime, \"Response time was longer than \" + limit + \" ms.\").to.be.below(limit);",
+									"console.log(\"Response Time: \" + pm.response.responseTime + \" ms\" + \" / Response Date: \" + pm.response.headers.get(\"Date\"));",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.collectionVariables.set(\"projectNAME\", pm.variables.replaceIn(\"{{$randomProductName}}\"));"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "default",
+								"disabled": true
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"{{projectNAME}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{protocol}}://{{url}}/{{architecture}}/{{version}}/projects",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{architecture}}",
+								"{{version}}",
+								"projects"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create a new project  - Missing parameter",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//Validating that the Status code received is Bad request, due to the parameter name included in the body is not the right parameter",
+									"pm.test(\"Validate that the Status code should be 400 - Bad Request\", () => {",
+									"    pm.response.to.have.status(400);",
+									"    console.log(\"Status Code: \" + pm.response.status);",
+									"});",
+									"",
+									"const txtData = pm.response.text();",
+									"pm.test(\"Validate the response received\", function() {",
+									"    pm.expect(txtData).contains(\"Bad Request\")",
+									"})",
+									"",
+									"pm.test(\"Validate if the Response time is less than limit\", function() {",
+									"var limit = 500;",
+									"pm.expect(pm.response.responseTime, \"Response time was longer than \" + limit + \" ms.\").to.be.below(limit);",
+									"console.log(\"Response Time: \" + pm.response.responseTime + \" ms\" + \" / Response Date: \" + pm.response.headers.get(\"Date\"));",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.collectionVariables.set(\"projectNAME\", pm.variables.replaceIn(\"{{$randomProductName}}\"));"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "default",
+								"disabled": true
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"names\": \"{{projectNAME}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{protocol}}://{{url}}/{{architecture}}/{{version}}/projects",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{architecture}}",
+								"{{version}}",
+								"projects"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a project",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"var SchemaDef = {",
+									"    \"type\": \"object\",",
+									"    \"properties\": {",
+									"        \"id\": {",
+									"            \"type\": \"integer\",",
+									"            \"default\": 0,",
+									"            \"title\": \"The id Schema\",",
+									"            \"examples\": [",
+									"                2291126244",
+									"            ]",
+									"        },",
+									"        \"color\": {",
+									"            \"type\": \"integer\",",
+									"            \"default\": 0,",
+									"            \"title\": \"The color Schema\",",
+									"            \"examples\": [",
+									"                48",
+									"            ]",
+									"        },",
+									"        \"name\": {",
+									"            \"type\": \"string\",",
+									"            \"default\": \"\",",
+									"            \"title\": \"The name Schema\",",
+									"            \"examples\": [",
+									"                \"Inbox\"",
+									"            ]",
+									"        },",
+									"        \"comment_count\": {",
+									"            \"type\": \"integer\",",
+									"            \"default\": 0,",
+									"            \"title\": \"The comment_count Schema\",",
+									"            \"examples\": [",
+									"                0",
+									"            ]",
+									"        },",
+									"        \"shared\": {",
+									"            \"type\": \"boolean\",",
+									"            \"default\": false,",
+									"            \"title\": \"The shared Schema\",",
+									"            \"examples\": [",
+									"                false",
+									"            ]",
+									"        },",
+									"        \"favorite\": {",
+									"            \"type\": \"boolean\",",
+									"            \"default\": false,",
+									"            \"title\": \"The favorite Schema\",",
+									"            \"examples\": [",
+									"                false",
+									"            ]",
+									"        },",
+									"        \"sync_id\": {",
+									"            \"type\": \"integer\",",
+									"            \"default\": 0,",
+									"            \"title\": \"The sync_id Schema\",",
+									"            \"examples\": [",
+									"                0",
+									"            ]",
+									"        },",
+									"        \"inbox_project\": {",
+									"            \"type\": \"boolean\",",
+									"            \"default\": false,",
+									"            \"title\": \"The inbox_project Schema\",",
+									"            \"examples\": [",
+									"                true",
+									"            ]",
+									"        },",
+									"        \"url\": {",
+									"            \"type\": \"string\",",
+									"            \"default\": \"\",",
+									"            \"title\": \"The url Schema\",",
+									"            \"examples\": [",
+									"                \"https://todoist.com/showProject?id=2291126244\"",
+									"            ]",
+									"        }",
+									"    }",
+									"};",
+									"",
+									"pm.test(\"Validate that the Schema is valid\", function() {",
+									"    pm.expect(tv4.validate(jsonData, SchemaDef)).to.be.true;",
+									"})",
+									"",
+									"pm.test(\"Validate that the Status code is 200\", function () {",
+									"pm.response.to.have.status(200);",
+									"console.log(\"Status Code: \" + pm.response.status);",
+									"});",
+									"",
+									"pm.test(\"Validate that the Response time is less than limit\", function() {",
+									"var limit = 600;",
+									"pm.expect(pm.response.responseTime, \"Response time was longer than \" + limit + \" ms.\").to.be.below(limit);",
+									"console.log(\"Response Time: \" + pm.response.responseTime + \" ms\" + \" / Response Date: \" + pm.response.headers.get(\"Date\"));",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{protocol}}://{{url}}/{{architecture}}/{{version}}/projects/{{projectID}}",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{architecture}}",
+								"{{version}}",
+								"projects",
+								"{{projectID}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a project - Project doesn't exists",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//Validating that the Status code received is Not found, due to the project ID is wrong",
+									"pm.test(\"Validate that the Status code is 404\", function () {",
+									"pm.response.to.have.status(404);",
+									"console.log(\"Status Code: \" + pm.response.status);",
+									"});",
+									"",
+									"const txtData = pm.response.text();",
+									"pm.test(\"Validate the response received\", function() {",
+									"    pm.expect(txtData).contains(\"Not found\")",
+									"})",
+									"",
+									"pm.test(\"Validate that the Response time is less than limit\", function() {",
+									"var limit = 500;",
+									"pm.expect(pm.response.responseTime, \"Response time was longer than \" + limit + \" ms.\").to.be.below(limit);",
+									"console.log(\"Response Time: \" + pm.response.responseTime + \" ms\" + \" / Response Date: \" + pm.response.headers.get(\"Date\"));",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{protocol}}://{{url}}/{{architecture}}/{{version}}/projects/{{wrongProjectID}}",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{architecture}}",
+								"{{version}}",
+								"projects",
+								"{{wrongProjectID}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update a project",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Validate that the Status code is 204\", function () {",
+									"    pm.response.to.have.status(204);",
+									"    console.log(\"The project color has been updated\");",
+									"});",
+									"",
+									"pm.test(\"Validate that the Response time is less than limit\", function() {",
+									"var limit = 600;",
+									"pm.expect(pm.response.responseTime, \"Response time was longer than \" + limit + \" ms.\").to.be.below(limit);",
+									"console.log(\"Response Time: \" + pm.response.responseTime + \" ms\" + \" / Response Date: \" + pm.response.headers.get(\"Date\"));",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"color\": 30\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{protocol}}://{{url}}/{{architecture}}/{{version}}/projects/{{projectID}}",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{architecture}}",
+								"{{version}}",
+								"projects",
+								"{{projectID}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update a project - Invalid Token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//Validating that the Status code received is Unauthorized, due to the token provided is wrong",
+									"pm.test(\"Validate that the Status code is 401\", function () {",
+									"    pm.response.to.have.status(401);",
+									"    console.log(\"Status Code: \" + pm.response.status);",
+									"});",
+									"",
+									"const txtData = pm.response.text();",
+									"pm.test(\"Validate the response received\", function() {",
+									"    pm.expect(txtData).contains(\"Forbidden\")",
+									"})",
+									"pm.test(\"Validate that the Response time is less than limit\", function() {",
+									"var limit = 500;",
+									"pm.expect(pm.response.responseTime, \"Response time was longer than \" + limit + \" ms.\").to.be.below(limit);",
+									"console.log(\"Response Time: \" + pm.response.responseTime + \" ms\" + \" / Response Date: \" + pm.response.headers.get(\"Date\"));",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "x4be3c906f90819b1a61d1c2c478ffbd7d7b51536968c8d30fad999415669a63d",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"color\": 30\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{protocol}}://{{url}}/{{architecture}}/{{version}}/projects/{{projectID}}",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{architecture}}",
+								"{{version}}",
+								"projects",
+								"{{projectID}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a project",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code should be 204\", () => {",
+									"    pm.response.to.have.status(204);",
+									"    console.log(\"The project has been deleted.\");",
+									"});",
+									"",
+									"pm.test(\"Validate that the Response time is less than limit\", function() {",
+									"    var limit = 2000;",
+									"    pm.expect(pm.response.responseTime, \"Response time was longer than \" + limit + \" ms.\").to.be.below(limit);",
+									"    console.log(\"Response Time: \" + pm.response.responseTime + \" ms\" + \" / Response Date: \" + pm.response.headers.get(\"Date\"));",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{protocol}}://{{url}}/{{architecture}}/{{version}}/projects/{{projectID}}",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{architecture}}",
+								"{{version}}",
+								"projects",
+								"{{projectID}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a project - Forbidden",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//Validating that the Status code received is Unauthorized, due to no token is provided",
+									"pm.test(\"Status code should be 401\", () => {",
+									"    pm.response.to.have.status(401);",
+									"     console.log(\"Status Code: \" + pm.response.status);",
+									"});",
+									"",
+									"const txtData = pm.response.text();",
+									"pm.test(\"Validate the response received\", function() {",
+									"    pm.expect(txtData).contains(\"Forbidden\")",
+									"})",
+									"",
+									"pm.test(\"Validate that the Response time is less than limit\", function() {",
+									"    var limit = 500;",
+									"    pm.expect(pm.response.responseTime, \"Response time was longer than \" + limit + \" ms.\").to.be.below(limit);",
+									"    console.log(\"Response Time: \" + pm.response.responseTime + \" ms\" + \" / Response Date: \" + pm.response.headers.get(\"Date\"));",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{protocol}}://{{url}}/{{architecture}}/{{version}}/projects/{{projectID}}",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{architecture}}",
+								"{{version}}",
+								"projects",
+								"{{projectID}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Tasks",
+			"item": [
+				{
+					"name": "Get active tasks",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"var SchemaDef = {",
+									"    \"$schema\": \"http://json-schema.org/draft-06/schema#\",",
+									"    \"type\": \"array\",",
+									"    \"items\": {",
+									"        \"$ref\": \"#/definitions/Welcome10Element\"",
+									"    },",
+									"    \"definitions\": {",
+									"        \"Welcome10Element\": {",
+									"            \"type\": \"object\",",
+									"            \"additionalProperties\": false,",
+									"            \"properties\": {",
+									"                \"id\": {",
+									"                    \"type\": \"integer\"",
+									"                },",
+									"                \"assigner\": {",
+									"                    \"type\": \"integer\"",
+									"                },",
+									"                \"project_id\": {",
+									"                    \"type\": \"integer\"",
+									"                },",
+									"                \"section_id\": {",
+									"                    \"type\": \"integer\"",
+									"                },",
+									"                \"order\": {",
+									"                    \"type\": \"integer\"",
+									"                },",
+									"                \"content\": {",
+									"                    \"type\": \"string\"",
+									"                },",
+									"                \"description\": {",
+									"                    \"type\": \"string\"",
+									"                },",
+									"                \"completed\": {",
+									"                    \"type\": \"boolean\"",
+									"                },",
+									"                \"label_ids\": {",
+									"                    \"type\": \"array\",",
+									"                    \"items\": {}",
+									"                },",
+									"                \"priority\": {",
+									"                    \"type\": \"integer\"",
+									"                },",
+									"                \"comment_count\": {",
+									"                    \"type\": \"integer\"",
+									"                },",
+									"                \"creator\": {",
+									"                    \"type\": \"integer\"",
+									"                },",
+									"                \"created\": {",
+									"                    \"type\": \"string\",",
+									"                    \"format\": \"date-time\"",
+									"                },",
+									"                \"url\": {",
+									"                    \"type\": \"string\",",
+									"                    \"format\": \"uri\",",
+									"                    \"qt-uri-protocols\": [",
+									"                        \"https\"",
+									"                    ]",
+									"                },",
+									"                \"parent\": {",
+									"                    \"type\": \"integer\"",
+									"                },",
+									"                \"parent_id\": {",
+									"                    \"type\": \"integer\"",
+									"                },",
+									"                \"due\": {",
+									"                    \"$ref\": \"#/definitions/Due\"",
+									"                }",
+									"            },",
+									"            \"required\": [",
+									"                \"assigner\",",
+									"                \"comment_count\",",
+									"                \"completed\",",
+									"                \"content\",",
+									"                \"created\",",
+									"                \"creator\",",
+									"                \"description\",",
+									"                \"id\",",
+									"                \"label_ids\",",
+									"                \"order\",",
+									"                \"priority\",",
+									"                \"project_id\",",
+									"                \"section_id\",",
+									"                \"url\"",
+									"            ],",
+									"            \"title\": \"Welcome10Element\"",
+									"        },",
+									"        \"Due\": {",
+									"            \"type\": \"object\",",
+									"            \"additionalProperties\": false,",
+									"            \"properties\": {",
+									"                \"date\": {",
+									"                    \"type\": \"string\",",
+									"                    \"format\": \"date\"",
+									"                },",
+									"                \"string\": {",
+									"                    \"type\": \"string\"",
+									"                },",
+									"                \"lang\": {",
+									"                    \"type\": \"string\"",
+									"                },",
+									"                \"recurring\": {",
+									"                    \"type\": \"boolean\"",
+									"                }",
+									"            },",
+									"            \"required\": [",
+									"                \"date\",",
+									"                \"lang\",",
+									"                \"recurring\",",
+									"                \"string\"",
+									"            ],",
+									"            \"title\": \"Due\"",
+									"        }",
+									"    }",
+									"}",
+									"",
+									"pm.test(\"Validate that the Schema is valid\", function() {",
+									"    pm.expect(tv4.validate(jsonData, SchemaDef)).to.be.true;",
+									"})",
+									"",
+									"pm.test(\"Validate that the Status code is 200\", function () {",
+									"pm.response.to.have.status(200);",
+									"console.log(\"Status Code: \" + pm.response.status);",
+									"});",
+									"",
+									"pm.test(\"Validate if the Response time is less than limit\", function() {",
+									"var limit = 2000;",
+									"pm.expect(pm.response.responseTime, \"Response time was longer than \" + limit + \" ms.\").to.be.below(limit);",
+									"console.log(\"Response Time: \" + pm.response.responseTime + \" ms\" + \" / Response Date: \" + pm.response.headers.get(\"Date\"));",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{protocol}}://{{url}}/{{architecture}}/{{version}}/tasks",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{architecture}}",
+								"{{version}}",
+								"tasks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get active tasks - Wrong URL",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//Validating that the Status code received is Not found, due to the URL is wrong",
+									"const txtData = pm.response.text();",
+									"",
+									"pm.test(\"Validate that the Status code is 404\", function () {",
+									"pm.response.to.have.status(404);",
+									"console.log(\"Status Code: \" + pm.response.status);",
+									"});",
+									"",
+									"pm.test(\"Validate the text received in the response\", function () {",
+									"    pm.expect(txtData).contains(\"Sorry, the page you're looking for isn’t here anymore\")",
+									"})",
+									"",
+									"pm.test(\"Validate if the Response time is less than limit\", function() {",
+									"var limit = 500;",
+									"pm.expect(pm.response.responseTime, \"Response time was longer than \" + limit + \" ms.\").to.be.below(limit);",
+									"console.log(\"Response Time: \" + pm.response.responseTime + \" ms\" + \" / Response Date: \" + pm.response.headers.get(\"Date\"));",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{protocol}}://{{url}}/{{architecture}}/{{version}}1/tasks",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{architecture}}",
+								"{{version}}1",
+								"tasks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create a new task",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// jsonData will contain the JSON object from the response body",
+									"let jsonData = pm.response.json();",
+									"",
+									"// Setting the \"task id\" collection variable",
+									"pm.collectionVariables.set(\"taskID\", jsonData.id);",
+									"",
+									"pm.test(\"Validate that the Status code is 200\", function () {",
+									"pm.response.to.have.status(200);",
+									"console.log(\"Status Code: \" + pm.response.status);",
+									"});",
+									"",
+									"pm.test(\"Validate that the Task name should match\", () => {",
+									"    pm.expect(jsonData.content).to.be.eql(pm.collectionVariables.get(\"contentNAME\"));",
+									"    console.log(\"The task with name: \" + jsonData.content + \" has been created\" );",
+									"});",
+									"",
+									"pm.test(\"Validate if the Response time is less than limit\", function() {",
+									"var limit = 1000;",
+									"pm.expect(pm.response.responseTime, \"Response time was longer than \" + limit + \" ms.\").to.be.below(limit);",
+									"console.log(\"Response Time: \" + pm.response.responseTime + \" ms\" + \" / Response Date: \" + pm.response.headers.get(\"Date\"));",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.collectionVariables.set(\"contentNAME\", pm.variables.replaceIn(\"{{$randomProduct}}\"));",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"content\": \"{{contentNAME}}\",\n    \"project_id\": \"{{projectID}}\"\n}"
+						},
+						"url": {
+							"raw": "{{protocol}}://{{url}}/{{architecture}}/{{version}}/tasks",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{architecture}}",
+								"{{version}}",
+								"tasks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create a new task  - Wrong Parameters",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//Validating that the Status code received is Bad request, due to the parameters name included in the body are not the right parameters",
+									"pm.test(\"Validate that the Status code should be 400 - Bad Request\", () => {",
+									"    pm.response.to.have.status(400);",
+									"    console.log(\"Status Code: \" + pm.response.status);",
+									"});",
+									"",
+									"const txtData = pm.response.text();",
+									"pm.test(\"Validate the response received\", function() {",
+									"    pm.expect(txtData).contains(\"Bad Request\")",
+									"})",
+									"",
+									"pm.test(\"Validate if the Response time is less than limit\", function() {",
+									"var limit = 500;",
+									"pm.expect(pm.response.responseTime, \"Response time was longer than \" + limit + \" ms.\").to.be.below(limit);",
+									"console.log(\"Response Time: \" + pm.response.responseTime + \" ms\" + \" / Response Date: \" + pm.response.headers.get(\"Date\"));",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.collectionVariables.set(\"contentNAME\", pm.variables.replaceIn(\"{{$randomProduct}}\"));",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"contents\": \"{{contentNAME}}\",\n    \"projects_id\": \"{{projectID}}\"\n}"
+						},
+						"url": {
+							"raw": "{{protocol}}://{{url}}/{{architecture}}/{{version}}/tasks",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{architecture}}",
+								"{{version}}",
+								"tasks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get an active task",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Validate that the Status code is 200\", function () {",
+									"pm.response.to.have.status(200);",
+									"console.log(\"Status Code: \" + pm.response.status);",
+									"});",
+									"",
+									"pm.test(\"Validate if the Response time is less than limit\", function() {",
+									"var limit = 600;",
+									"pm.expect(pm.response.responseTime, \"Response time was longer than \" + limit + \" ms.\").to.be.below(limit);",
+									"console.log(\"Response Time: \" + pm.response.responseTime + \" ms\" + \" / Response Date: \" + pm.response.headers.get(\"Date\"));",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{protocol}}://{{url}}/{{architecture}}/{{version}}/tasks/{{taskID}}",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{architecture}}",
+								"{{version}}",
+								"tasks",
+								"{{taskID}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get an active task - TaskID doesn't exist",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//Validating that the Status code received is Not found, due to the task ID is wrong",
+									"pm.test(\"Validate that the Status code is 404\", function () {",
+									"pm.response.to.have.status(404);",
+									"console.log(\"Status Code: \" + pm.response.status);",
+									"});",
+									"",
+									"const txtData = pm.response.text();",
+									"pm.test(\"Validate the response received\", function() {",
+									"    pm.expect(txtData).contains(\"Not found\")",
+									"})",
+									"",
+									"pm.test(\"Validate that the Response time is less than limit\", function() {",
+									"var limit = 500;",
+									"pm.expect(pm.response.responseTime, \"Response time was longer than \" + limit + \" ms.\").to.be.below(limit);",
+									"console.log(\"Response Time: \" + pm.response.responseTime + \" ms\" + \" / Response Date: \" + pm.response.headers.get(\"Date\"));",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{protocol}}://{{url}}/{{architecture}}/{{version}}/tasks/{{taskID}}1",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{architecture}}",
+								"{{version}}",
+								"tasks",
+								"{{taskID}}1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update a task",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Validate that the Status code is 204\", function () {",
+									"    pm.response.to.have.status(204);",
+									"    console.log(\"The task has been updated\");",
+									"});",
+									"",
+									"//pm.test(\"Due string should be updated\", () => {",
+									"    //pm.expect(pm.response.text()).to.include(\"tomorrow\");",
+									"    //console.log(\"The task has been updated\");",
+									"//});",
+									"",
+									"pm.test(\"Validate if the Response time is less than limit\", function() {",
+									"var limit = 2000;",
+									"pm.expect(pm.response.responseTime, \"Response time was longer than \" + limit + \" ms.\").to.be.below(limit);",
+									"console.log(\"Response Time: \" + pm.response.responseTime + \" ms\" + \" / Response Date: \" + pm.response.headers.get(\"Date\"));",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"due_string\": \"tomorrow\"\n}"
+						},
+						"url": {
+							"raw": "{{protocol}}://{{url}}/{{architecture}}/{{version}}/tasks/{{taskID}}",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{architecture}}",
+								"{{version}}",
+								"tasks",
+								"{{taskID}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update a task - Wrong Parameter to update",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//Validating that the Status code received is Bad request, due to the parameter to update is wrong",
+									"pm.test(\"Validate that the Status code is 400\", function () {",
+									"pm.response.to.have.status(400);",
+									"console.log(\"Status Code: \" + pm.response.status);",
+									"});",
+									"",
+									"const txtData = pm.response.text();",
+									"pm.test(\"Validate the response received\", function() {",
+									"    pm.expect(txtData).contains(\"At least one of supported fields should be set and non-empty\")",
+									"})",
+									"",
+									"pm.test(\"Validate that the Response time is less than limit\", function() {",
+									"var limit = 500;",
+									"pm.expect(pm.response.responseTime, \"Response time was longer than \" + limit + \" ms.\").to.be.below(limit);",
+									"console.log(\"Response Time: \" + pm.response.responseTime + \" ms\" + \" / Response Date: \" + pm.response.headers.get(\"Date\"));",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"due_strings\": \"tomorrow\"\n}"
+						},
+						"url": {
+							"raw": "{{protocol}}://{{url}}/{{architecture}}/{{version}}/tasks/{{taskID}}",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{architecture}}",
+								"{{version}}",
+								"tasks",
+								"{{taskID}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Close a task",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code should be 204\", () => {",
+									"    pm.response.to.have.status(204);",
+									"    console.log(\"The task has been closed\");",
+									"});",
+									"",
+									"pm.test(\"Validate if the Response time is less than limit\", function() {",
+									"var limit = 1000;",
+									"pm.expect(pm.response.responseTime, \"Response time was longer than \" + limit + \" ms.\").to.be.below(limit);",
+									"console.log(\"Response Time: \" + pm.response.responseTime + \" ms\" + \" / Response Date: \" + pm.response.headers.get(\"Date\"));",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{protocol}}://{{url}}/{{architecture}}/{{version}}/tasks/{{taskID}}/close",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{architecture}}",
+								"{{version}}",
+								"tasks",
+								"{{taskID}}",
+								"close"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Close a task - Task already deleted",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//Validating that the Status code received is Not found, due to the task ID is wrong",
+									"pm.test(\"Validate that the Status code is 404\", function () {",
+									"pm.response.to.have.status(404);",
+									"console.log(\"Status Code: \" + pm.response.status);",
+									"});",
+									"",
+									"const txtData = pm.response.text();",
+									"pm.test(\"Validate the response received\", function() {",
+									"    pm.expect(txtData).contains(\"Task not found\")",
+									"})",
+									"",
+									"pm.test(\"Validate that the Response time is less than limit\", function() {",
+									"var limit = 500;",
+									"pm.expect(pm.response.responseTime, \"Response time was longer than \" + limit + \" ms.\").to.be.below(limit);",
+									"console.log(\"Response Time: \" + pm.response.responseTime + \" ms\" + \" / Response Date: \" + pm.response.headers.get(\"Date\"));",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{protocol}}://{{url}}/{{architecture}}/{{version}}/tasks/{{wrongTaskID}}/close",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{architecture}}",
+								"{{version}}",
+								"tasks",
+								"{{wrongTaskID}}",
+								"close"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reopen a task",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code should be 204\", () => {",
+									"    pm.response.to.have.status(204);",
+									"    console.log(\"The task has been Reopened\");",
+									"});",
+									"",
+									"pm.test(\"Validate if the Response time is less than limit\", function() {",
+									"var limit = 1000;",
+									"pm.expect(pm.response.responseTime, \"Response time was longer than \" + limit + \" ms.\").to.be.below(limit);",
+									"console.log(\"Response Time: \" + pm.response.responseTime + \" ms\" + \" / Response Date: \" + pm.response.headers.get(\"Date\"));",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{protocol}}://{{url}}/{{architecture}}/{{version}}/tasks/{{taskID}}/reopen",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{architecture}}",
+								"{{version}}",
+								"tasks",
+								"{{taskID}}",
+								"reopen"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reopen a task  - Task not closed",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//Validating that the Status code received is No content, due to the task ID is not closed",
+									"pm.test(\"Validate that the Status code is 204\", function () {",
+									"pm.response.to.have.status(204);",
+									"console.log(\"Status Code: \" + pm.response.status);",
+									"});",
+									"",
+									"pm.test(\"Validate that the Response time is less than limit\", function() {",
+									"var limit = 500;",
+									"pm.expect(pm.response.responseTime, \"Response time was longer than \" + limit + \" ms.\").to.be.below(limit);",
+									"console.log(\"Response Time: \" + pm.response.responseTime + \" ms\" + \" / Response Date: \" + pm.response.headers.get(\"Date\"));",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{protocol}}://{{url}}/{{architecture}}/{{version}}/tasks/{{taskID}}/reopen",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{architecture}}",
+								"{{version}}",
+								"tasks",
+								"{{taskID}}",
+								"reopen"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a task",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code should be 204\", () => {",
+									"    pm.response.to.have.status(204);",
+									"    console.log(\"The task has been deleted\");",
+									"});",
+									"",
+									"pm.test(\"Validate if the Response time is less than limit\", function() {",
+									"var limit = 1000;",
+									"pm.expect(pm.response.responseTime, \"Response time was longer than \" + limit + \" ms.\").to.be.below(limit);",
+									"console.log(\"Response Time: \" + pm.response.responseTime + \" ms\" + \" / Response Date: \" + pm.response.headers.get(\"Date\"));",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{protocol}}://{{url}}/{{architecture}}/{{version}}/tasks/{{taskID}}",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{architecture}}",
+								"{{version}}",
+								"tasks",
+								"{{taskID}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a task - Task already deleted",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//Validating that the Status code received is No Content, due to task was already deleted",
+									"pm.test(\"Status code should be 204\", () => {",
+									"    pm.response.to.have.status(204);",
+									"     console.log(\"Status Code: \" + pm.response.status);",
+									"});",
+									"",
+									"pm.test(\"Validate that the Response time is less than limit\", function() {",
+									"    var limit = 500;",
+									"    pm.expect(pm.response.responseTime, \"Response time was longer than \" + limit + \" ms.\").to.be.below(limit);",
+									"    console.log(\"Response Time: \" + pm.response.responseTime + \" ms\" + \" / Response Date: \" + pm.response.headers.get(\"Date\"));",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{protocol}}://{{url}}/{{architecture}}/{{version}}/tasks/{{taskID}}",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{architecture}}",
+								"{{version}}",
+								"tasks",
+								"{{taskID}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "a74a33d0cc5d3674d4906252b5dd1a97bd76e4b4",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "projectID",
+			"value": "2292023907",
+			"type": "default"
+		},
+		{
+			"key": "taskID",
+			"value": "5868043933",
+			"type": "default"
+		},
+		{
+			"key": "projectNAME",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "contentNAME",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "wrongProjectID",
+			"value": "123456",
+			"type": "default"
+		},
+		{
+			"key": "wrongTaskID",
+			"value": "7890",
+			"type": "default"
+		},
+		{
+			"key": "openTaskID",
+			"value": "5886653882",
+			"type": "default"
+		}
+	]
+}
