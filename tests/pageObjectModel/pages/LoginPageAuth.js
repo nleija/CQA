@@ -17,6 +17,12 @@ class LoginPageAuth {
     this.wrongEmailPassword = Selector(
       "div._2282cb83._087a8179.f9cb5d8a.f9408a0e"
     )
+    this.profileMenuBtn = Selector(
+      "div.top_right_button_group>button:nth-of-type(5)"
+    )
+    this.logoutOption = Selector(
+      "div.reactist_menulist.user_menu>button:nth-of-type(2)"
+    )
   }
 
   async setUserName(userName) {
@@ -38,6 +44,10 @@ class LoginPageAuth {
       .typeText(this.passwordInput, password)
       .click(this.loginBtn)
       .wait(1500)
+  }
+
+  async doLogout() {
+    await t.click(this.profileMenuBtn).click(this.logoutOption)
   }
 }
 
