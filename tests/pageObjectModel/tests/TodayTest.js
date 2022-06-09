@@ -11,7 +11,7 @@ fixture("Testing Today page")
     // function for a successfull login process
     await t.useRole(STANDARD_USER).wait(5000)
   })
-  .afterEach(async (t) => {
+  .afterEach(async () => {
     LoginPageAuth.doLogout()
   })
 

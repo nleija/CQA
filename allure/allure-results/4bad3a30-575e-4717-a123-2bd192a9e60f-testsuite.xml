@@ -1,0 +1,23 @@
+<?xml version='1.0'?>
+<ns2:test-suite xmlns:ns2='urn:model.allure.qatools.yandex.ru' start='1654789549104' stop='1654789549104'>
+    <name>Testing Data Driven</name>
+    <title>Testing Data Driven</title>
+    <test-cases>
+        <test-case start='1654789549104' status='passed' stop='1654789577027'>
+            <name>Login Page Validation - Wrong email or password</name>
+            <title>Login Page Validation - Wrong email or password</title>
+            <labels>
+                <label name='severity' value='undefined'/>
+            </labels>
+            <parameters>
+                <parameter kind='argument' name='User Agent' value='Chrome 102.0.5005.61 / macOS 10.15.7'/>
+            </parameters>
+            <steps/>
+            <attachments/>
+            <failure>
+                <message>This test has been passed.</message>
+                <stack-trace>no error</stack-trace>
+            </failure>
+        </test-case>
+    </test-cases>
+</ns2:test-suite>

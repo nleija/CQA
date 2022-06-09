@@ -1,10 +1,9 @@
 name: CQA Todoist CI
-
 on:
   push:
-    branches: [ main ]
+    branches: [ TempoNL ]
   pull_request:
-    branches: [ main ]
+    branches: [ TempoNL ]
 
 jobs:
   Lint:
@@ -16,5 +15,4 @@ jobs:
           node-version: '14.x'
       - run: npm ci
       - run: npm run lint
-
-      - run: npm test
+      - run: npm run test-today

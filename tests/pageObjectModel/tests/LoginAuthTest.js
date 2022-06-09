@@ -3,14 +3,9 @@ import LoginPageAuth from "../pages/LoginPageAuth"
 import TodayPage from "../pages/TodayPage"
 import { CREDENTIALS, URLS } from "../data/Constants"
 import {
-  EMPTY_USER,
-  FAKE_USER,
-  FAKE_USER2,
   STANDARD_USER,
-  WRONG_USER1,
   WRONG_USER2,
   WRONG_USER3,
-  WRONG_USER4,
   WRONG_USER5,
   WRONG_USER6,
 } from "../data/Roles"
