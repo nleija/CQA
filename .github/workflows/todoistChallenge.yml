@@ -31,12 +31,17 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      - name: Install dependencies
-        run: npm install
       - name: Install newman
         run: npm install newman
       - name: Run Lint
         run: npm ci
       - run: npm run lint
-      - name: Test Backend API
+      
+  API-testing:
+
+    needs: install
+    runs-on: ubuntu-latest
+    
+    steps:   
+      - name: Test Backend 
         run: npm run api-test
