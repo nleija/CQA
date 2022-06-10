@@ -14,6 +14,10 @@ fixture("Testing Today page")
   .afterEach(async () => {
     LoginPageAuth.doLogout()
   })
+  .afterEach(async (t) => {
+    //function to logout
+    await TodayPage.logOut()
+  })
 
 test.meta("type", "smoke")(
   "As a registered user successfully logged in, I should be able to see the Today Page loaded",
@@ -86,7 +90,7 @@ test("As a user I should be able to add 10 new tasks", async (t) => {
   await t.click(AddNewTaskPage.cancelTaskBtn)
 })
 
-test("As a user I should be able to delete all existing tasks", async (t) => {
+test.only("As a user I should be able to delete all existing tasks", async (t) => {
   let i = 0
   let numTasks = await TodayPage.taskList.count
   if (numTasks > 0) {
@@ -118,3 +122,12 @@ test("As a user I should be able to add 10 new tasks", async (t) => {
 
   await t.wait(2000).click(AddNewTaskPage.cancelTaskBtn)
 })
+<<<<<<< Updated upstream
+=======
+
+test("As a user I should be able to delete all tasks listed in the Today page", async (t) => {
+  TodayPage.deleteAllTasks()
+  let numTasks = await TodayPage.allTasksNames.count
+  console.log("Tasks listed = " + numTasks)
+})
+>>>>>>> Stashed changes
