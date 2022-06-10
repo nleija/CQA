@@ -26,18 +26,9 @@ class TodayPage {
     this.deleteTaskOpt = Selector("div.reactist_menulist>button:nth-of-type(5)")
     this.deleteButton = Selector("footer>div>button:nth-of-type(2)")
     this.taskNameDeleted = Selector("div>div>span>strong")
-<<<<<<< Updated upstream
     this.taskList = Selector("div.task_list_item__body")
     this.deleteTaskOption = Selector("li.menu_item.icon_menu_item.danger_menu")
     this.confirmDeleteButton = Selector("footer>div>button:nth-of-type(2)")
-=======
-    this.buttonSettings = Selector(
-      "button.reactist_menubutton.top_bar_btn.settings_btn>img"
-    )
-    this.logoutOption = Selector(
-      "div.reactist_menulist.user_menu>button:nth-of-type(2)"
-    )
->>>>>>> Stashed changes
   }
 
   async addTask(description, name) {
