@@ -35,7 +35,7 @@ jobs:
         run: npm install newman
       - name: Run Lint
         run: npm ci
-  #    - run: npm run lint
+      - run: npm run lint
       
   API-testing:
 
@@ -44,4 +44,4 @@ jobs:
     
     steps:   
       - name: Test Backend 
-        run: npm run api-test
+        run: npm run api-testing
