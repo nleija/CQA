@@ -37,11 +37,11 @@ jobs:
         run: npm ci
    #   - run: npm run lint
       
-  API-testing:
+  RunPOSTMANcollection:
 
     needs: install
     runs-on: ubuntu-latest
     
     steps:   
-      - name: Test Backend 
+      - name: Testing API 
         run: npm run api-testing
