@@ -1,17 +1,38 @@
 {
   "scripts": {
     "test": "testcafe chrome tests/pageObjectModel/tests",
+    "test-login": "testcafe chrome tests/pageObjectModel/tests -f 'Testing Login page' --reporter allure",
+    "test-today": "testcafe 'browserstack:chrome@102.0:OS X Big Sur' tests/pageObjectModel/tests -f 'Testing Today page'",
+    "test:dataDriven": "testcafe chrome tests/pageObjectModel/dataDriven/*.js --skip-js-errors  --reporter allure",
     "testDemo": "testcafe chrome tests/Session1/firstFile.js",
     "test:pom": "testcafe chrome tests/pageObjectModel/tests/*.js --skip-js-errors",
-    "lint": "eslint tests/pageObjectModel/"
+    "test-headless": "testcafe chrome:headless tests/pageObjectModel/tests",
+    "test-smoke": "testcafe chrome:headless tests/pageObjectModel/tests --test-meta type=smoke",
+    "lint": "eslint tests/pageObjectModel/",
+    "test:runByScript": "testcafe chrome tests/runner/*.js -L",
+    "test:configurationFile": "testcafe",
+    "test:reportsRunner": "testcafe chrome tests/runner/*.js -L",
+    "createReport": "node report-generator.js",
+    "api-testing": "newman run './api_testing/TodoistChallenge.postman_collection.json' -e './api_testing/Todoist-environment.postman_environment.json'",
+    "test:reports": "testcafe chrome tests/pageObjectModel/tests -f 'Testing Today page' --skip-js-errors --reporter cucumber-json --reporter-json-folder=reports/htmlReports/jsonResults",
+    "report:allure": "allure generate allure/allure-results --clean -o allure/allure-report && allure open allure/allure-report",
+    "test:reportAllure": "npm run test:dataDriven && npm run report:allure"
   },
   "dependencies": {
+    "chai": "^4.3.6",
     "dotenv": "^16.0.1",
-    "testcafe": "^1.18.6"
+    "testcafe": "^1.18.6",
+    "testcafe-browser-provider-browserstack": "^1.14.0",
+    "testcafe-reporter-cucumber-json": "^6.3.0",
+    "testcafe-reporter-html": "^1.4.6"
   },
   "devDependencies": {
+    "allure-commandline": "^2.17.2",
     "eslint": "^8.14.0",
     "eslint-plugin-react": "^7.29.4",
-    "eslint-plugin-testcafe": "^0.2.1"
+    "eslint-plugin-testcafe": "^0.2.1",
+    "mocha-allure-reporter": "^1.4.0",
+    "multiple-cucumber-html-reporter": "^1.21.2",
+    "newman": "^5.3.2"
   }
 }

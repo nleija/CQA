@@ -1,0 +1,3 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"passed","Thu Jun 09 10:45:49 CDT 2022","Thu Jun 09 10:46:17 CDT 2022","27923","","Testing Data Driven","","Testing Data Driven","Login Page Validation - Wrong email or password","Login Page Validation - Wrong email or password",""
+"passed","Thu Jun 09 10:45:20 CDT 2022","Thu Jun 09 10:45:46 CDT 2022","25812","","Testing Data Driven","","Testing Data Driven","Login Page Validation - Today","Login Page Validation - Today",""

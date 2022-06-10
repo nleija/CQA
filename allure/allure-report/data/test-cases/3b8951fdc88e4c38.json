@@ -1,0 +1,67 @@
+{
+  "uid" : "3b8951fdc88e4c38",
+  "name" : "Login Page Validation - Today",
+  "fullName" : "Testing Data Driven.Login Page Validation - Today",
+  "historyId" : "45a144138def0d456ba0f88a0cae1383",
+  "time" : {
+    "start" : 1654789520662,
+    "stop" : 1654789546474,
+    "duration" : 25812
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "statusMessage" : "This test has been passed.",
+  "statusTrace" : "no error",
+  "flaky" : false,
+  "newFailed" : false,
+  "newBroken" : false,
+  "newPassed" : false,
+  "retriesCount" : 1,
+  "retriesStatusChange" : false,
+  "beforeStages" : [ ],
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "severity",
+    "value" : "undefined"
+  }, {
+    "name" : "suite",
+    "value" : "Testing Data Driven"
+  }, {
+    "name" : "testClass",
+    "value" : "Testing Data Driven"
+  }, {
+    "name" : "testMethod",
+    "value" : "Login Page Validation - Today"
+  }, {
+    "name" : "package",
+    "value" : "Testing Data Driven"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "User Agent",
+    "value" : "Chrome 102.0.5005.61 / macOS 10.15.7"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ {
+      "uid" : "3ceb831315c1e292",
+      "status" : "passed",
+      "statusDetails" : "This test has been passed.",
+      "time" : {
+        "start" : 1654789407086,
+        "stop" : 1654789428891,
+        "duration" : 21805
+      }
+    } ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "3b8951fdc88e4c38.json",
+  "parameterValues" : [ "Chrome 102.0.5005.61 / macOS 10.15.7" ]
+}

@@ -1,0 +1,21 @@
+[ {
+  "uid" : "2d28fffb4bc4a0b7",
+  "name" : "Login Page Validation - Wrong email or password",
+  "time" : {
+    "start" : 1654789549104,
+    "stop" : 1654789577027,
+    "duration" : 27923
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "3b8951fdc88e4c38",
+  "name" : "Login Page Validation - Today",
+  "time" : {
+    "start" : 1654789520662,
+    "stop" : 1654789546474,
+    "duration" : 25812
+  },
+  "status" : "passed",
+  "severity" : "normal"
+} ]
