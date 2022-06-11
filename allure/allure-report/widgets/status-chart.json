@@ -1,20 +1,40 @@
 [ {
-  "uid" : "2d28fffb4bc4a0b7",
-  "name" : "Login Page Validation - Wrong email or password",
+  "uid" : "7a54b041928de0d2",
+  "name" : "Login Page Validation - Today",
   "time" : {
-    "start" : 1654789549104,
-    "stop" : 1654789577027,
-    "duration" : 27923
+    "start" : 1654879748262,
+    "stop" : 1654879771326,
+    "duration" : 23064
   },
   "status" : "passed",
   "severity" : "normal"
 }, {
-  "uid" : "3b8951fdc88e4c38",
-  "name" : "Login Page Validation - Today",
+  "uid" : "c19230448842db79",
+  "name" : "As a user I should be able to delete all existing tasks",
   "time" : {
-    "start" : 1654789520662,
-    "stop" : 1654789546474,
-    "duration" : 25812
+    "start" : 1654879920599,
+    "stop" : 1654879928948,
+    "duration" : 8349
+  },
+  "status" : "failed",
+  "severity" : "normal"
+}, {
+  "uid" : "a6fe675bb99c5991",
+  "name" : "As a user I should be able to add one task",
+  "time" : {
+    "start" : 1654879912222,
+    "stop" : 1654879932569,
+    "duration" : 20347
+  },
+  "status" : "failed",
+  "severity" : "normal"
+}, {
+  "uid" : "3de4d73cf69320a9",
+  "name" : "Login Page Validation - Wrong email or password",
+  "time" : {
+    "start" : 1654879761968,
+    "stop" : 1654879775663,
+    "duration" : 13695
   },
   "status" : "passed",
   "severity" : "normal"

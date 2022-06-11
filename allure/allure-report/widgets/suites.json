@@ -1,6 +1,17 @@
 {
-  "total" : 1,
+  "total" : 2,
   "items" : [ {
+    "uid" : "04d7dd1543c1eefa5b900050263d6b43",
+    "name" : "Testing Today page",
+    "statistic" : {
+      "failed" : 2,
+      "broken" : 0,
+      "skipped" : 0,
+      "passed" : 0,
+      "unknown" : 0,
+      "total" : 2
+    }
+  }, {
     "uid" : "bc24601800f7b8192cbb4bcbb9ee3eae",
     "name" : "Testing Data Driven",
     "statistic" : {

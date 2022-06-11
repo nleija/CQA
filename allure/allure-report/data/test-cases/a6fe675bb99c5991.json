@@ -1,0 +1,62 @@
+{
+  "uid" : "a6fe675bb99c5991",
+  "name" : "As a user I should be able to add one task",
+  "fullName" : "Testing Today page.As a user I should be able to add one task",
+  "historyId" : "7330f2512dbd7ef1f00dfe80f236695",
+  "time" : {
+    "start" : 1654879912222,
+    "stop" : 1654879932569,
+    "duration" : 20347
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "failed",
+  "statusMessage" : "This test has been broken",
+  "statusTrace" : "TypeError: Cannot read properties of undefined (reading 'addTask')\n                \n                Browser: Chrome 102.0.5005.61 / macOS 10.15.7\n                \n                   32 |\n                   33 |test.only(\"As a user I should be able to add one task\", async (t) => {\n                   34 |  await t.click(TodayPage.plusAddBtn)\n                   35 |  // Function to add a new task\n                   36 |  t.wait(2000)\n                 > 37 |  t.TodayPage.addTask(TASKS.SINGLE.DESCRIPTION, TASKS.SINGLE.NAME)\n                   38 |  const allTasks = Selector(\"div.task_list_item__body>div>div>div>div\")\n                   39 |  const taskAdded = allTasks.withExactText(TASKS.SINGLE.NAME).toString()\n                   40 |  await t.expect(taskAdded).exists\n                   41 |  console.log(\"New task was successfully created.\")\n                   42 |})\n                \n                   at <anonymous> (/Users/normaleija/Documents/GitHub/CQA/tests/pageObjectModel/tests/TodayTest.js:37:15)\n                   at asyncGeneratorStep (/Users/normaleija/Documents/GitHub/CQA/tests/pageObjectModel/tests/TodayTest.js:6:232)\n                   at _next (/Users/normaleija/Documents/GitHub/CQA/tests/pageObjectModel/tests/TodayTest.js:6:570)",
+  "flaky" : false,
+  "newFailed" : false,
+  "newBroken" : false,
+  "newPassed" : false,
+  "retriesCount" : 0,
+  "retriesStatusChange" : false,
+  "beforeStages" : [ ],
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "severity",
+    "value" : "undefined"
+  }, {
+    "name" : "suite",
+    "value" : "Testing Today page"
+  }, {
+    "name" : "testClass",
+    "value" : "Testing Today page"
+  }, {
+    "name" : "testMethod",
+    "value" : "As a user I should be able to add one task"
+  }, {
+    "name" : "package",
+    "value" : "Testing Today page"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "User Agent",
+    "value" : "Chrome 102.0.5005.61 / macOS 10.15.7"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Product defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "tags" : [ ]
+  },
+  "source" : "a6fe675bb99c5991.json",
+  "parameterValues" : [ "Chrome 102.0.5005.61 / macOS 10.15.7" ]
+}

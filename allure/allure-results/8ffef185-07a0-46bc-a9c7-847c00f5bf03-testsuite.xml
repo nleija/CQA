@@ -1,0 +1,41 @@
+<?xml version='1.0'?>
+<ns2:test-suite xmlns:ns2='urn:model.allure.qatools.yandex.ru' start='1654879912222' stop='1654879912241'>
+    <name>Testing Today page</name>
+    <title>Testing Today page</title>
+    <test-cases>
+        <test-case start='1654879912222' status='failed' stop='1654879932569'>
+            <name>As a user I should be able to add one task</name>
+            <title>As a user I should be able to add one task</title>
+            <labels>
+                <label name='severity' value='undefined'/>
+            </labels>
+            <parameters>
+                <parameter kind='argument' name='User Agent' value='Chrome 102.0.5005.61 / macOS 10.15.7'/>
+            </parameters>
+            <steps/>
+            <attachments/>
+            <failure>
+                <message>This test has been broken</message>
+                <stack-trace>TypeError: Cannot read properties of undefined (reading 'addTask')
+                
+                Browser: Chrome 102.0.5005.61 / macOS 10.15.7
+                
+                   32 |
+                   33 |test.only("As a user I should be able to add one task", async (t) => {
+                   34 |  await t.click(TodayPage.plusAddBtn)
+                   35 |  // Function to add a new task
+                   36 |  t.wait(2000)
+                 > 37 |  t.TodayPage.addTask(TASKS.SINGLE.DESCRIPTION, TASKS.SINGLE.NAME)
+                   38 |  const allTasks = Selector("div.task_list_item__body>div>div>div>div")
+                   39 |  const taskAdded = allTasks.withExactText(TASKS.SINGLE.NAME).toString()
+                   40 |  await t.expect(taskAdded).exists
+                   41 |  console.log("New task was successfully created.")
+                   42 |})
+                
+                   at &lt;anonymous> (/Users/normaleija/Documents/GitHub/CQA/tests/pageObjectModel/tests/TodayTest.js:37:15)
+                   at asyncGeneratorStep (/Users/normaleija/Documents/GitHub/CQA/tests/pageObjectModel/tests/TodayTest.js:6:232)
+                   at _next (/Users/normaleija/Documents/GitHub/CQA/tests/pageObjectModel/tests/TodayTest.js:6:570)</stack-trace>
+            </failure>
+        </test-case>
+    </test-cases>
+</ns2:test-suite>

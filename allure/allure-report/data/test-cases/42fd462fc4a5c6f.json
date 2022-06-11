@@ -1,12 +1,12 @@
 {
-  "uid" : "3b8951fdc88e4c38",
-  "name" : "Login Page Validation - Today",
-  "fullName" : "Testing Data Driven.Login Page Validation - Today",
-  "historyId" : "45a144138def0d456ba0f88a0cae1383",
+  "uid" : "42fd462fc4a5c6f",
+  "name" : "Login Page Validation - Wrong email or password",
+  "fullName" : "Testing Data Driven.Login Page Validation - Wrong email or password",
+  "historyId" : "5bfddc65a4a1ba8caf0793d14514c86e",
   "time" : {
-    "start" : 1654789520662,
-    "stop" : 1654789546474,
-    "duration" : 25812
+    "start" : 1654789549104,
+    "stop" : 1654789577027,
+    "duration" : 27923
   },
   "description" : "",
   "descriptionHtml" : "",
@@ -17,7 +17,7 @@
   "newFailed" : false,
   "newBroken" : false,
   "newPassed" : false,
-  "retriesCount" : 1,
+  "retriesCount" : 0,
   "retriesStatusChange" : false,
   "beforeStages" : [ ],
   "afterStages" : [ ],
@@ -32,7 +32,7 @@
     "value" : "Testing Data Driven"
   }, {
     "name" : "testMethod",
-    "value" : "Login Page Validation - Today"
+    "value" : "Login Page Validation - Wrong email or password"
   }, {
     "name" : "package",
     "value" : "Testing Data Driven"
@@ -45,23 +45,12 @@
     "value" : "Chrome 102.0.5005.61 / macOS 10.15.7"
   } ],
   "links" : [ ],
-  "hidden" : false,
-  "retry" : false,
+  "hidden" : true,
+  "retry" : true,
   "extra" : {
-    "severity" : "normal",
-    "retries" : [ {
-      "uid" : "3ceb831315c1e292",
-      "status" : "passed",
-      "statusDetails" : "This test has been passed.",
-      "time" : {
-        "start" : 1654789407086,
-        "stop" : 1654789428891,
-        "duration" : 21805
-      }
-    } ],
     "categories" : [ ],
     "tags" : [ ]
   },
-  "source" : "3b8951fdc88e4c38.json",
+  "source" : "42fd462fc4a5c6f.json",
   "parameterValues" : [ "Chrome 102.0.5005.61 / macOS 10.15.7" ]
 }

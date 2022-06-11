@@ -1,5 +1,47 @@
 {
   "uid" : "4b4757e66a1912dae1a509f688f20b0f",
   "name" : "categories",
-  "children" : [ ]
+  "children" : [ {
+    "name" : "Product defects",
+    "children" : [ {
+      "name" : "This test has been broken",
+      "children" : [ {
+        "name" : "As a user I should be able to add one task",
+        "uid" : "a6fe675bb99c5991",
+        "parentUid" : "0caa3dfa63d91f62e71c10db3af631f9",
+        "status" : "failed",
+        "time" : {
+          "start" : 1654879912222,
+          "stop" : 1654879932569,
+          "duration" : 20347
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "newPassed" : false,
+        "newBroken" : false,
+        "retriesCount" : 0,
+        "retriesStatusChange" : false,
+        "parameters" : [ "Chrome 102.0.5005.61 / macOS 10.15.7" ]
+      }, {
+        "name" : "As a user I should be able to delete all existing tasks",
+        "uid" : "c19230448842db79",
+        "parentUid" : "0caa3dfa63d91f62e71c10db3af631f9",
+        "status" : "failed",
+        "time" : {
+          "start" : 1654879920599,
+          "stop" : 1654879928948,
+          "duration" : 8349
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "newPassed" : false,
+        "newBroken" : false,
+        "retriesCount" : 0,
+        "retriesStatusChange" : false,
+        "parameters" : [ "Chrome 102.0.5005.61 / macOS 10.15.7" ]
+      } ],
+      "uid" : "0caa3dfa63d91f62e71c10db3af631f9"
+    } ],
+    "uid" : "8fb3a91ba5aaf9de24cc8a92edc82b5d"
+  } ]
 }

@@ -1,5 +1,5 @@
 {
-  "uid" : "569b643b1020c0cb",
+  "uid" : "502d471ae706f88c",
   "name" : "Login Page Validation - Wrong email or password",
   "fullName" : "Testing Data Driven.Login Page Validation - Wrong email or password",
   "historyId" : "5bfddc65a4a1ba8caf0793d14514c86e",
@@ -51,6 +51,6 @@
     "categories" : [ ],
     "tags" : [ ]
   },
-  "source" : "569b643b1020c0cb.json",
+  "source" : "502d471ae706f88c.json",
   "parameterValues" : [ "Chrome 102.0.5005.61 / macOS 10.15.7" ]
 }

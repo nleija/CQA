@@ -1,6 +1,10 @@
 {
   "browsers": "chrome",
-  "src": "tests/pageObjectModel/dataDriven/*.js",
+  "src": [
+    "tests/pageObjectModel/dataDriven/*.js",
+    "tests/**/*.js",
+    "tests/pageObjectModel/tests/*.js"
+  ],
   "screenshots": {
     "path": "./configuration_file/screenshots/",
     "takeOnFails": true,

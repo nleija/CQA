@@ -1,0 +1,51 @@
+<?xml version='1.0'?>
+<ns2:test-suite xmlns:ns2='urn:model.allure.qatools.yandex.ru' start='1654879920599' stop='1654879920603'>
+    <name>Testing Today page</name>
+    <title>Testing Today page</title>
+    <test-cases>
+        <test-case start='1654879920599' status='failed' stop='1654879928948'>
+            <name>As a user I should be able to delete all existing tasks</name>
+            <title>As a user I should be able to delete all existing tasks</title>
+            <labels>
+                <label name='severity' value='undefined'/>
+            </labels>
+            <parameters>
+                <parameter kind='argument' name='User Agent' value='Chrome 102.0.5005.61 / macOS 10.15.7'/>
+            </parameters>
+            <steps/>
+            <attachments/>
+            <failure>
+                <message>This test has been broken</message>
+                <stack-trace>- Error in fixture.afterEach hook -
+                Action "selector" argument error:
+                
+                Cannot initialize a Selector because Selector is undefined, and not one of the following: a CSS selector string, a Selector object, a node snapshot, a function, or a Promise returned by a Selector.
+                
+                Browser: Chrome 102.0.5005.61 / macOS 10.15.7
+                
+                   64 |    //.click(this.deleteButton)
+                   65 |    //}
+                   66 |  }
+                   67 |
+                   68 |  async logOut() {
+                 > 69 |    await t.click(this.buttonSettings).click(this.logoutOption)
+                   70 |  }
+                   71 |}
+                   72 |
+                   73 |export default new TodayPage()
+                   74 |
+                
+                   at &lt;anonymous> (/Users/normaleija/Documents/GitHub/CQA/tests/pageObjectModel/pages/TodayPage.js:69:13)
+                   at asyncGeneratorStep (/Users/normaleija/Documents/GitHub/CQA/tests/pageObjectModel/pages/TodayPage.js:2:268)
+                   at _next (/Users/normaleija/Documents/GitHub/CQA/tests/pageObjectModel/pages/TodayPage.js:2:606)
+                   at &lt;anonymous> (/Users/normaleija/Documents/GitHub/CQA/tests/pageObjectModel/pages/TodayPage.js:2:771)
+                   at &lt;anonymous> (/Users/normaleija/Documents/GitHub/CQA/tests/pageObjectModel/pages/TodayPage.js:2:512)
+                   at TodayPage.logOut (/Users/normaleija/Documents/GitHub/CQA/tests/pageObjectModel/pages/TodayPage.js:68:18)
+                   at &lt;anonymous> (/Users/normaleija/Documents/GitHub/CQA/tests/pageObjectModel/tests/TodayTest.js:19:21)
+                   at asyncGeneratorStep (/Users/normaleija/Documents/GitHub/CQA/tests/pageObjectModel/tests/TodayTest.js:6:232)
+                   at _next (/Users/normaleija/Documents/GitHub/CQA/tests/pageObjectModel/tests/TodayTest.js:6:570)
+                   at &lt;anonymous> (/Users/normaleija/Documents/GitHub/CQA/tests/pageObjectModel/tests/TodayTest.js:6:735)</stack-trace>
+            </failure>
+        </test-case>
+    </test-cases>
+</ns2:test-suite>

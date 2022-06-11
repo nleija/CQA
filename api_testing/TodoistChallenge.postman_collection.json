@@ -33,12 +33,6 @@
 									"",
 									"pm.test(\"Validate that the Content-Type is application/json\", function () {",
 									"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"application/json\");",
-									"});",
-									"",
-									"pm.test(\"Validate if the Response time is less than limit\", function() {",
-									"var limit = 3000;",
-									"pm.expect(pm.response.responseTime, \"Response time was longer than \" + limit + \" ms.\").to.be.below(limit);",
-									"console.log(\"Response Time: \" + pm.response.responseTime + \" ms\" + \" / Response Date: \" + pm.response.headers.get(\"Date\"));",
 									"});"
 								],
 								"type": "text/javascript"
@@ -80,13 +74,7 @@
 									"const txtData = pm.response.text();",
 									"pm.test(\"Validate the text received in the response\", function () {",
 									"    pm.expect(txtData).contains(\"Sorry, the page you're looking for isn’t here anymore\")",
-									"})",
-									"",
-									"pm.test(\"Validate if the Response time is less than limit\", function() {",
-									"var limit = 500;",
-									"pm.expect(pm.response.responseTime, \"Response time was longer than \" + limit + \" ms.\").to.be.below(limit);",
-									"console.log(\"Response Time: \" + pm.response.responseTime + \" ms\" + \" / Response Date: \" + pm.response.headers.get(\"Date\"));",
-									"});"
+									"})"
 								],
 								"type": "text/javascript"
 							}
@@ -131,12 +119,6 @@
 									"pm.test(\"Validate that the Project name should match\", () => {",
 									"    pm.expect(jsonData.name).to.be.eql(pm.collectionVariables.get(\"projectNAME\"));",
 									"    console.log(\"The project with name: \" + jsonData.name + \" has been created\" );",
-									"});",
-									"",
-									"pm.test(\"Validate if the Response time is less than limit\", function() {",
-									"var limit = 3000;",
-									"pm.expect(pm.response.responseTime, \"Response time was longer than \" + limit + \" ms.\").to.be.below(limit);",
-									"console.log(\"Response Time: \" + pm.response.responseTime + \" ms\" + \" / Response Date: \" + pm.response.headers.get(\"Date\"));",
 									"});"
 								],
 								"type": "text/javascript"
@@ -213,13 +195,7 @@
 									"const txtData = pm.response.text();",
 									"pm.test(\"Validate the response received\", function() {",
 									"    pm.expect(txtData).contains(\"Bad Request\")",
-									"})",
-									"",
-									"pm.test(\"Validate if the Response time is less than limit\", function() {",
-									"var limit = 500;",
-									"pm.expect(pm.response.responseTime, \"Response time was longer than \" + limit + \" ms.\").to.be.below(limit);",
-									"console.log(\"Response Time: \" + pm.response.responseTime + \" ms\" + \" / Response Date: \" + pm.response.headers.get(\"Date\"));",
-									"});"
+									"})"
 								],
 								"type": "text/javascript"
 							}
@@ -304,12 +280,6 @@
 									"",
 									"pm.test(\"Validate that the Content-Type is application/json\", function () {",
 									"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"application/json\");",
-									"});",
-									"",
-									"pm.test(\"Validate that the Response time is less than limit\", function() {",
-									"var limit = 600;",
-									"pm.expect(pm.response.responseTime, \"Response time was longer than \" + limit + \" ms.\").to.be.below(limit);",
-									"console.log(\"Response Time: \" + pm.response.responseTime + \" ms\" + \" / Response Date: \" + pm.response.headers.get(\"Date\"));",
 									"});"
 								],
 								"type": "text/javascript"
@@ -351,13 +321,7 @@
 									"const txtData = pm.response.text();",
 									"pm.test(\"Validate the response received\", function() {",
 									"    pm.expect(txtData).contains(\"Not found\")",
-									"})",
-									"",
-									"pm.test(\"Validate that the Response time is less than limit\", function() {",
-									"var limit = 500;",
-									"pm.expect(pm.response.responseTime, \"Response time was longer than \" + limit + \" ms.\").to.be.below(limit);",
-									"console.log(\"Response Time: \" + pm.response.responseTime + \" ms\" + \" / Response Date: \" + pm.response.headers.get(\"Date\"));",
-									"});"
+									"})"
 								],
 								"type": "text/javascript"
 							}
@@ -392,12 +356,6 @@
 									"pm.test(\"Validate that the Status code is 204\", function () {",
 									"    pm.response.to.have.status(204);",
 									"    console.log(\"The project color has been updated\");",
-									"});",
-									"",
-									"pm.test(\"Validate that the Response time is less than limit\", function() {",
-									"var limit = 600;",
-									"pm.expect(pm.response.responseTime, \"Response time was longer than \" + limit + \" ms.\").to.be.below(limit);",
-									"console.log(\"Response Time: \" + pm.response.responseTime + \" ms\" + \" / Response Date: \" + pm.response.headers.get(\"Date\"));",
 									"});"
 								],
 								"type": "text/javascript"
@@ -455,13 +413,7 @@
 									"const txtData = pm.response.text();",
 									"pm.test(\"Validate the response received\", function() {",
 									"    pm.expect(txtData).contains(\"Forbidden\")",
-									"})",
-									"",
-									"pm.test(\"Validate that the Response time is less than limit\", function() {",
-									"var limit = 500;",
-									"pm.expect(pm.response.responseTime, \"Response time was longer than \" + limit + \" ms.\").to.be.below(limit);",
-									"console.log(\"Response Time: \" + pm.response.responseTime + \" ms\" + \" / Response Date: \" + pm.response.headers.get(\"Date\"));",
-									"});"
+									"})"
 								],
 								"type": "text/javascript"
 							}
@@ -522,12 +474,6 @@
 									"pm.test(\"Status code should be 204\", () => {",
 									"    pm.response.to.have.status(204);",
 									"    console.log(\"The project has been deleted.\");",
-									"});",
-									"",
-									"pm.test(\"Validate that the Response time is less than limit\", function() {",
-									"    var limit = 2000;",
-									"    pm.expect(pm.response.responseTime, \"Response time was longer than \" + limit + \" ms.\").to.be.below(limit);",
-									"    console.log(\"Response Time: \" + pm.response.responseTime + \" ms\" + \" / Response Date: \" + pm.response.headers.get(\"Date\"));",
 									"});"
 								],
 								"type": "text/javascript"
@@ -569,13 +515,7 @@
 									"const txtData = pm.response.text();",
 									"pm.test(\"Validate the response received\", function() {",
 									"    pm.expect(txtData).contains(\"Forbidden\")",
-									"})",
-									"",
-									"pm.test(\"Validate that the Response time is less than limit\", function() {",
-									"    var limit = 500;",
-									"    pm.expect(pm.response.responseTime, \"Response time was longer than \" + limit + \" ms.\").to.be.below(limit);",
-									"    console.log(\"Response Time: \" + pm.response.responseTime + \" ms\" + \" / Response Date: \" + pm.response.headers.get(\"Date\"));",
-									"});"
+									"})"
 								],
 								"type": "text/javascript"
 							}
@@ -602,6 +542,30 @@
 						}
 					},
 					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Validate if the Response time is less than limit\", function() {",
+							"var limit = 500;",
+							"pm.expect(pm.response.responseTime, \"Response time was longer than \" + limit + \" ms.\").to.be.below(limit);",
+							"console.log(\"Response Time: \" + pm.response.responseTime + \" ms\" + \" / Response Date: \" + pm.response.headers.get(\"Date\"));",
+							"});"
+						]
+					}
 				}
 			]
 		},
@@ -633,12 +597,6 @@
 									"",
 									"pm.test(\"Validate that the Content-Type is application/json\", function () {",
 									"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"application/json\");",
-									"});",
-									"",
-									"pm.test(\"Validate if the Response time is less than limit\", function() {",
-									"var limit = 2000;",
-									"pm.expect(pm.response.responseTime, \"Response time was longer than \" + limit + \" ms.\").to.be.below(limit);",
-									"console.log(\"Response Time: \" + pm.response.responseTime + \" ms\" + \" / Response Date: \" + pm.response.headers.get(\"Date\"));",
 									"});"
 								],
 								"type": "text/javascript"
@@ -686,13 +644,7 @@
 									"",
 									"pm.test(\"Validate the text received in the response\", function () {",
 									"    pm.expect(txtData).contains(\"Sorry, the page you're looking for isn’t here anymore\")",
-									"})",
-									"",
-									"pm.test(\"Validate if the Response time is less than limit\", function() {",
-									"var limit = 500;",
-									"pm.expect(pm.response.responseTime, \"Response time was longer than \" + limit + \" ms.\").to.be.below(limit);",
-									"console.log(\"Response Time: \" + pm.response.responseTime + \" ms\" + \" / Response Date: \" + pm.response.headers.get(\"Date\"));",
-									"});"
+									"})"
 								],
 								"type": "text/javascript"
 							}
@@ -743,12 +695,6 @@
 									"pm.test(\"Validate that the Task name should match\", () => {",
 									"    pm.expect(jsonData.content).to.be.eql(pm.collectionVariables.get(\"contentNAME\"));",
 									"    console.log(\"The task with name: \" + jsonData.content + \" has been created\" );",
-									"});",
-									"",
-									"pm.test(\"Validate if the Response time is less than limit\", function() {",
-									"var limit = 1000;",
-									"pm.expect(pm.response.responseTime, \"Response time was longer than \" + limit + \" ms.\").to.be.below(limit);",
-									"console.log(\"Response Time: \" + pm.response.responseTime + \" ms\" + \" / Response Date: \" + pm.response.headers.get(\"Date\"));",
 									"});"
 								],
 								"type": "text/javascript"
@@ -809,13 +755,7 @@
 									"const txtData = pm.response.text();",
 									"pm.test(\"Validate the response received\", function() {",
 									"    pm.expect(txtData).contains(\"Bad Request\")",
-									"})",
-									"",
-									"pm.test(\"Validate if the Response time is less than limit\", function() {",
-									"var limit = 500;",
-									"pm.expect(pm.response.responseTime, \"Response time was longer than \" + limit + \" ms.\").to.be.below(limit);",
-									"console.log(\"Response Time: \" + pm.response.responseTime + \" ms\" + \" / Response Date: \" + pm.response.headers.get(\"Date\"));",
-									"});"
+									"})"
 								],
 								"type": "text/javascript"
 							}
@@ -873,12 +813,6 @@
 									"",
 									"pm.test(\"Validate that the Content-Type is application/json\", function () {",
 									"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"application/json\");",
-									"});",
-									"",
-									"pm.test(\"Validate if the Response time is less than limit\", function() {",
-									"var limit = 600;",
-									"pm.expect(pm.response.responseTime, \"Response time was longer than \" + limit + \" ms.\").to.be.below(limit);",
-									"console.log(\"Response Time: \" + pm.response.responseTime + \" ms\" + \" / Response Date: \" + pm.response.headers.get(\"Date\"));",
 									"});"
 								],
 								"type": "text/javascript"
@@ -920,13 +854,7 @@
 									"const txtData = pm.response.text();",
 									"pm.test(\"Validate the response received\", function() {",
 									"    pm.expect(txtData).contains(\"Not found\")",
-									"})",
-									"",
-									"pm.test(\"Validate that the Response time is less than limit\", function() {",
-									"var limit = 500;",
-									"pm.expect(pm.response.responseTime, \"Response time was longer than \" + limit + \" ms.\").to.be.below(limit);",
-									"console.log(\"Response Time: \" + pm.response.responseTime + \" ms\" + \" / Response Date: \" + pm.response.headers.get(\"Date\"));",
-									"});"
+									"})"
 								],
 								"type": "text/javascript"
 							}
@@ -965,12 +893,6 @@
 									"",
 									"pm.test(\"Validate that the Content-Type is text/html; charset=utf-8\", function () {",
 									"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"text/html; charset=utf-8\");",
-									"});",
-									"",
-									"pm.test(\"Validate if the Response time is less than limit\", function() {",
-									"var limit = 2000;",
-									"pm.expect(pm.response.responseTime, \"Response time was longer than \" + limit + \" ms.\").to.be.below(limit);",
-									"console.log(\"Response Time: \" + pm.response.responseTime + \" ms\" + \" / Response Date: \" + pm.response.headers.get(\"Date\"));",
 									"});"
 								],
 								"type": "text/javascript"
@@ -1022,13 +944,7 @@
 									"const txtData = pm.response.text();",
 									"pm.test(\"Validate the response received\", function() {",
 									"    pm.expect(txtData).contains(\"At least one of supported fields should be set and non-empty\")",
-									"})",
-									"",
-									"pm.test(\"Validate that the Response time is less than limit\", function() {",
-									"var limit = 500;",
-									"pm.expect(pm.response.responseTime, \"Response time was longer than \" + limit + \" ms.\").to.be.below(limit);",
-									"console.log(\"Response Time: \" + pm.response.responseTime + \" ms\" + \" / Response Date: \" + pm.response.headers.get(\"Date\"));",
-									"});"
+									"})"
 								],
 								"type": "text/javascript"
 							}
@@ -1073,12 +989,6 @@
 									"pm.test(\"Status code should be 204\", () => {",
 									"    pm.response.to.have.status(204);",
 									"    console.log(\"The task has been closed\");",
-									"});",
-									"",
-									"pm.test(\"Validate if the Response time is less than limit\", function() {",
-									"var limit = 1000;",
-									"pm.expect(pm.response.responseTime, \"Response time was longer than \" + limit + \" ms.\").to.be.below(limit);",
-									"console.log(\"Response Time: \" + pm.response.responseTime + \" ms\" + \" / Response Date: \" + pm.response.headers.get(\"Date\"));",
 									"});"
 								],
 								"type": "text/javascript"
@@ -1121,13 +1031,7 @@
 									"const txtData = pm.response.text();",
 									"pm.test(\"Validate the response received\", function() {",
 									"    pm.expect(txtData).contains(\"Task not found\")",
-									"})",
-									"",
-									"pm.test(\"Validate that the Response time is less than limit\", function() {",
-									"var limit = 500;",
-									"pm.expect(pm.response.responseTime, \"Response time was longer than \" + limit + \" ms.\").to.be.below(limit);",
-									"console.log(\"Response Time: \" + pm.response.responseTime + \" ms\" + \" / Response Date: \" + pm.response.headers.get(\"Date\"));",
-									"});"
+									"})"
 								],
 								"type": "text/javascript"
 							}
@@ -1163,12 +1067,6 @@
 									"pm.test(\"Status code should be 204\", () => {",
 									"    pm.response.to.have.status(204);",
 									"    console.log(\"The task has been Reopened\");",
-									"});",
-									"",
-									"pm.test(\"Validate if the Response time is less than limit\", function() {",
-									"var limit = 1000;",
-									"pm.expect(pm.response.responseTime, \"Response time was longer than \" + limit + \" ms.\").to.be.below(limit);",
-									"console.log(\"Response Time: \" + pm.response.responseTime + \" ms\" + \" / Response Date: \" + pm.response.headers.get(\"Date\"));",
 									"});"
 								],
 								"type": "text/javascript"
@@ -1206,12 +1104,6 @@
 									"pm.test(\"Validate that the Status code is 204\", function () {",
 									"pm.response.to.have.status(204);",
 									"console.log(\"Status Code: \" + pm.response.status);",
-									"});",
-									"",
-									"pm.test(\"Validate that the Response time is less than limit\", function() {",
-									"var limit = 500;",
-									"pm.expect(pm.response.responseTime, \"Response time was longer than \" + limit + \" ms.\").to.be.below(limit);",
-									"console.log(\"Response Time: \" + pm.response.responseTime + \" ms\" + \" / Response Date: \" + pm.response.headers.get(\"Date\"));",
 									"});"
 								],
 								"type": "text/javascript"
@@ -1248,12 +1140,6 @@
 									"pm.test(\"Status code should be 204\", () => {",
 									"    pm.response.to.have.status(204);",
 									"    console.log(\"The task has been deleted\");",
-									"});",
-									"",
-									"pm.test(\"Validate if the Response time is less than limit\", function() {",
-									"var limit = 1000;",
-									"pm.expect(pm.response.responseTime, \"Response time was longer than \" + limit + \" ms.\").to.be.below(limit);",
-									"console.log(\"Response Time: \" + pm.response.responseTime + \" ms\" + \" / Response Date: \" + pm.response.headers.get(\"Date\"));",
 									"});"
 								],
 								"type": "text/javascript"
@@ -1290,12 +1176,6 @@
 									"pm.test(\"Status code should be 204\", () => {",
 									"    pm.response.to.have.status(204);",
 									"     console.log(\"Status Code: \" + pm.response.status);",
-									"});",
-									"",
-									"pm.test(\"Validate that the Response time is less than limit\", function() {",
-									"    var limit = 500;",
-									"    pm.expect(pm.response.responseTime, \"Response time was longer than \" + limit + \" ms.\").to.be.below(limit);",
-									"    console.log(\"Response Time: \" + pm.response.responseTime + \" ms\" + \" / Response Date: \" + pm.response.headers.get(\"Date\"));",
 									"});"
 								],
 								"type": "text/javascript"
@@ -1320,6 +1200,30 @@
 						}
 					},
 					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Validate if the Response time is less than limit\", function() {",
+							"var limit = 500;",
+							"pm.expect(pm.response.responseTime, \"Response time was longer than \" + limit + \" ms.\").to.be.below(limit);",
+							"console.log(\"Response Time: \" + pm.response.responseTime + \" ms\" + \" / Response Date: \" + pm.response.headers.get(\"Date\"));",
+							"});"
+						]
+					}
 				}
 			]
 		}

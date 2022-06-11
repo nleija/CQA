@@ -3,24 +3,41 @@
   "name" : "timeline",
   "children" : [ {
     "name" : "Login Page Validation - Wrong email or password",
-    "uid" : "2d28fffb4bc4a0b7",
+    "uid" : "3de4d73cf69320a9",
     "parentUid" : "ab17fc5a4eb3bca4b216b548c7f9fcbc",
     "status" : "passed",
     "time" : {
-      "start" : 1654789549104,
-      "stop" : 1654789577027,
-      "duration" : 27923
+      "start" : 1654879761968,
+      "stop" : 1654879775663,
+      "duration" : 13695
     },
     "flaky" : false,
     "newFailed" : false,
     "newPassed" : false,
     "newBroken" : false,
-    "retriesCount" : 1,
+    "retriesCount" : 2,
+    "retriesStatusChange" : false,
+    "parameters" : [ "Chrome 102.0.5005.61 / macOS 10.15.7" ]
+  }, {
+    "name" : "Login Page Validation - Today",
+    "uid" : "944e7a72f85a6db6",
+    "parentUid" : "ab17fc5a4eb3bca4b216b548c7f9fcbc",
+    "status" : "passed",
+    "time" : {
+      "start" : 1654789520662,
+      "stop" : 1654789546474,
+      "duration" : 25812
+    },
+    "flaky" : false,
+    "newFailed" : false,
+    "newPassed" : false,
+    "newBroken" : false,
+    "retriesCount" : 0,
     "retriesStatusChange" : false,
     "parameters" : [ "Chrome 102.0.5005.61 / macOS 10.15.7" ]
   }, {
     "name" : "Login Page Validation - Wrong email or password",
-    "uid" : "569b643b1020c0cb",
+    "uid" : "502d471ae706f88c",
     "parentUid" : "ab17fc5a4eb3bca4b216b548c7f9fcbc",
     "status" : "passed",
     "time" : {
@@ -37,7 +54,58 @@
     "parameters" : [ "Chrome 102.0.5005.61 / macOS 10.15.7" ]
   }, {
     "name" : "Login Page Validation - Today",
-    "uid" : "3ceb831315c1e292",
+    "uid" : "7a54b041928de0d2",
+    "parentUid" : "ab17fc5a4eb3bca4b216b548c7f9fcbc",
+    "status" : "passed",
+    "time" : {
+      "start" : 1654879748262,
+      "stop" : 1654879771326,
+      "duration" : 23064
+    },
+    "flaky" : false,
+    "newFailed" : false,
+    "newPassed" : false,
+    "newBroken" : false,
+    "retriesCount" : 2,
+    "retriesStatusChange" : false,
+    "parameters" : [ "Chrome 102.0.5005.61 / macOS 10.15.7" ]
+  }, {
+    "name" : "Login Page Validation - Wrong email or password",
+    "uid" : "42fd462fc4a5c6f",
+    "parentUid" : "ab17fc5a4eb3bca4b216b548c7f9fcbc",
+    "status" : "passed",
+    "time" : {
+      "start" : 1654789549104,
+      "stop" : 1654789577027,
+      "duration" : 27923
+    },
+    "flaky" : false,
+    "newFailed" : false,
+    "newPassed" : false,
+    "newBroken" : false,
+    "retriesCount" : 0,
+    "retriesStatusChange" : false,
+    "parameters" : [ "Chrome 102.0.5005.61 / macOS 10.15.7" ]
+  }, {
+    "name" : "As a user I should be able to add one task",
+    "uid" : "a6fe675bb99c5991",
+    "parentUid" : "ab17fc5a4eb3bca4b216b548c7f9fcbc",
+    "status" : "failed",
+    "time" : {
+      "start" : 1654879912222,
+      "stop" : 1654879932569,
+      "duration" : 20347
+    },
+    "flaky" : false,
+    "newFailed" : false,
+    "newPassed" : false,
+    "newBroken" : false,
+    "retriesCount" : 0,
+    "retriesStatusChange" : false,
+    "parameters" : [ "Chrome 102.0.5005.61 / macOS 10.15.7" ]
+  }, {
+    "name" : "Login Page Validation - Today",
+    "uid" : "f007c4c10f267f8a",
     "parentUid" : "ab17fc5a4eb3bca4b216b548c7f9fcbc",
     "status" : "passed",
     "time" : {
@@ -53,20 +121,20 @@
     "retriesStatusChange" : false,
     "parameters" : [ "Chrome 102.0.5005.61 / macOS 10.15.7" ]
   }, {
-    "name" : "Login Page Validation - Today",
-    "uid" : "3b8951fdc88e4c38",
+    "name" : "As a user I should be able to delete all existing tasks",
+    "uid" : "c19230448842db79",
     "parentUid" : "ab17fc5a4eb3bca4b216b548c7f9fcbc",
-    "status" : "passed",
+    "status" : "failed",
     "time" : {
-      "start" : 1654789520662,
-      "stop" : 1654789546474,
-      "duration" : 25812
+      "start" : 1654879920599,
+      "stop" : 1654879928948,
+      "duration" : 8349
     },
     "flaky" : false,
     "newFailed" : false,
     "newPassed" : false,
     "newBroken" : false,
-    "retriesCount" : 1,
+    "retriesCount" : 0,
     "retriesStatusChange" : false,
     "parameters" : [ "Chrome 102.0.5005.61 / macOS 10.15.7" ]
   } ]

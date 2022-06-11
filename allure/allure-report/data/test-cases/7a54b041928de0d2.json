@@ -1,12 +1,12 @@
 {
-  "uid" : "2d28fffb4bc4a0b7",
-  "name" : "Login Page Validation - Wrong email or password",
-  "fullName" : "Testing Data Driven.Login Page Validation - Wrong email or password",
-  "historyId" : "5bfddc65a4a1ba8caf0793d14514c86e",
+  "uid" : "7a54b041928de0d2",
+  "name" : "Login Page Validation - Today",
+  "fullName" : "Testing Data Driven.Login Page Validation - Today",
+  "historyId" : "45a144138def0d456ba0f88a0cae1383",
   "time" : {
-    "start" : 1654789549104,
-    "stop" : 1654789577027,
-    "duration" : 27923
+    "start" : 1654879748262,
+    "stop" : 1654879771326,
+    "duration" : 23064
   },
   "description" : "",
   "descriptionHtml" : "",
@@ -17,7 +17,7 @@
   "newFailed" : false,
   "newBroken" : false,
   "newPassed" : false,
-  "retriesCount" : 1,
+  "retriesCount" : 2,
   "retriesStatusChange" : false,
   "beforeStages" : [ ],
   "afterStages" : [ ],
@@ -32,7 +32,7 @@
     "value" : "Testing Data Driven"
   }, {
     "name" : "testMethod",
-    "value" : "Login Page Validation - Wrong email or password"
+    "value" : "Login Page Validation - Today"
   }, {
     "name" : "package",
     "value" : "Testing Data Driven"
@@ -50,18 +50,27 @@
   "extra" : {
     "severity" : "normal",
     "retries" : [ {
-      "uid" : "569b643b1020c0cb",
+      "uid" : "944e7a72f85a6db6",
       "status" : "passed",
       "statusDetails" : "This test has been passed.",
       "time" : {
-        "start" : 1654789435977,
-        "stop" : 1654789464345,
-        "duration" : 28368
+        "start" : 1654789520662,
+        "stop" : 1654789546474,
+        "duration" : 25812
+      }
+    }, {
+      "uid" : "f007c4c10f267f8a",
+      "status" : "passed",
+      "statusDetails" : "This test has been passed.",
+      "time" : {
+        "start" : 1654789407086,
+        "stop" : 1654789428891,
+        "duration" : 21805
       }
     } ],
     "categories" : [ ],
     "tags" : [ ]
   },
-  "source" : "2d28fffb4bc4a0b7.json",
+  "source" : "7a54b041928de0d2.json",
   "parameterValues" : [ "Chrome 102.0.5005.61 / macOS 10.15.7" ]
 }

@@ -1,0 +1,62 @@
+{
+  "uid" : "c19230448842db79",
+  "name" : "As a user I should be able to delete all existing tasks",
+  "fullName" : "Testing Today page.As a user I should be able to delete all existing tasks",
+  "historyId" : "b02d9dc5ee3be30e80943d418912409a",
+  "time" : {
+    "start" : 1654879920599,
+    "stop" : 1654879928948,
+    "duration" : 8349
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "failed",
+  "statusMessage" : "This test has been broken",
+  "statusTrace" : "- Error in fixture.afterEach hook -\n                Action \"selector\" argument error:\n                \n                Cannot initialize a Selector because Selector is undefined, and not one of the following: a CSS selector string, a Selector object, a node snapshot, a function, or a Promise returned by a Selector.\n                \n                Browser: Chrome 102.0.5005.61 / macOS 10.15.7\n                \n                   64 |    //.click(this.deleteButton)\n                   65 |    //}\n                   66 |  }\n                   67 |\n                   68 |  async logOut() {\n                 > 69 |    await t.click(this.buttonSettings).click(this.logoutOption)\n                   70 |  }\n                   71 |}\n                   72 |\n                   73 |export default new TodayPage()\n                   74 |\n                \n                   at <anonymous> (/Users/normaleija/Documents/GitHub/CQA/tests/pageObjectModel/pages/TodayPage.js:69:13)\n                   at asyncGeneratorStep (/Users/normaleija/Documents/GitHub/CQA/tests/pageObjectModel/pages/TodayPage.js:2:268)\n                   at _next (/Users/normaleija/Documents/GitHub/CQA/tests/pageObjectModel/pages/TodayPage.js:2:606)\n                   at <anonymous> (/Users/normaleija/Documents/GitHub/CQA/tests/pageObjectModel/pages/TodayPage.js:2:771)\n                   at <anonymous> (/Users/normaleija/Documents/GitHub/CQA/tests/pageObjectModel/pages/TodayPage.js:2:512)\n                   at TodayPage.logOut (/Users/normaleija/Documents/GitHub/CQA/tests/pageObjectModel/pages/TodayPage.js:68:18)\n                   at <anonymous> (/Users/normaleija/Documents/GitHub/CQA/tests/pageObjectModel/tests/TodayTest.js:19:21)\n                   at asyncGeneratorStep (/Users/normaleija/Documents/GitHub/CQA/tests/pageObjectModel/tests/TodayTest.js:6:232)\n                   at _next (/Users/normaleija/Documents/GitHub/CQA/tests/pageObjectModel/tests/TodayTest.js:6:570)\n                   at <anonymous> (/Users/normaleija/Documents/GitHub/CQA/tests/pageObjectModel/tests/TodayTest.js:6:735)",
+  "flaky" : false,
+  "newFailed" : false,
+  "newBroken" : false,
+  "newPassed" : false,
+  "retriesCount" : 0,
+  "retriesStatusChange" : false,
+  "beforeStages" : [ ],
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "severity",
+    "value" : "undefined"
+  }, {
+    "name" : "suite",
+    "value" : "Testing Today page"
+  }, {
+    "name" : "testClass",
+    "value" : "Testing Today page"
+  }, {
+    "name" : "testMethod",
+    "value" : "As a user I should be able to delete all existing tasks"
+  }, {
+    "name" : "package",
+    "value" : "Testing Today page"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "User Agent",
+    "value" : "Chrome 102.0.5005.61 / macOS 10.15.7"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Product defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "tags" : [ ]
+  },
+  "source" : "c19230448842db79.json",
+  "parameterValues" : [ "Chrome 102.0.5005.61 / macOS 10.15.7" ]
+}
