@@ -25,23 +25,31 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           
-  install:
+  analysisCode:
 
     needs: build
     runs-on: ubuntu-latest
     
     steps:
-      - name: Install newman
-        run: npm install newman
       - name: Run Lint
         run: npm ci
-  #    - run: npm run lint
-      
-  API-testing:
+      - run: npm run lint
+          
+  installNewman:
 
-    needs: install
+    needs: analysisCode
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Install newman
+        run: npm install newman
+
+      
+  RunPOSTMANcollection:
+
+    needs: installNewman
     runs-on: ubuntu-latest
     
     steps:   
-      - name: Test Backend 
-        run: npm run api-test
+      - name: Testing API 
+        run: npm run api-testing
