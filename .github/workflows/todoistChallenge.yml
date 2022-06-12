@@ -10,7 +10,7 @@ on:
     branches: [main]
 
 jobs:
-  build:
+  runningEslint:
     runs-on: ubuntu-latest
 
     strategy:
@@ -24,20 +24,20 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
-          
-  analysisCode:
-
-    needs: build
-    runs-on: ubuntu-latest
-    
-    steps:
+      # Install node_modules
       - name: Run Lint
         run: npm ci
       - run: npm run lint
-          
+      # Print current Node.js version
+      - run: node --version
+      # Print current npm version
+      - run: npm --version
+      # Print current Git version
+      - run: git --version
+      
   installNewman:
 
-    needs: analysisCode
+    needs: runningEslint
     runs-on: ubuntu-latest
     
     steps:
