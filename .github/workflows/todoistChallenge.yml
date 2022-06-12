@@ -10,7 +10,7 @@ on:
     branches: [main]
 
 jobs:
-  RunningEslint:
+  runningEslint:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -34,7 +34,7 @@ jobs:
       # Print current Git version
       - run: git --version
       
-  InstallingNewman:
+  installingNewman:
     needs: RunningEslint
     runs-on: ubuntu-latest
       # Install Node on the runner
@@ -51,7 +51,7 @@ jobs:
       - name: Make Directory for results
         run: mkdir -p testResults
 
-  RunPOSTMANcollection:
+  runPOSTMANcollection:
     needs: InstallingNewman
     runs-on: ubuntu-latest
     steps:
