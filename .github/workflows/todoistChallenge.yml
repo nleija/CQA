@@ -37,13 +37,13 @@ jobs:
   install-newman:
     needs: run-eslint
     runs-on: ubuntu-latest
+    steps:
       # Install Node on the runner
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
       # Install the newman command line utility and also install the html extra reporter    
-    steps:
       - name: Installing newman
         run: npm install newman
       - run: npm install newman-reporter-htmlextra
