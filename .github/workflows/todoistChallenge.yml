@@ -33,20 +33,21 @@ jobs:
       - run: npm --version
       # Print current Git version
       - run: git --version
-      
+
   install-newman:
     needs: run-eslint
     runs-on: ubuntu-latest
+    steps:
       # Install Node on the runner
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
-      # Install the newman command line utility and also install the html extra reporter    
-    steps:
-      - name: Installing newman
-        run: npm install newman
-      - run: npm install newman-reporter-htmlextra
+      # Install the newman command line utility and also install the html extra reporter
+      - name: Install newman
+        run: |
+          npm install -g newman
+          npm install -g newman-reporter-htmlextra
       # Make directory to upload the test results
       - name: Make Directory for results
         run: mkdir -p testResults
@@ -60,7 +61,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       # Run POSTMAN collection
-      - name: Testing API 
+      - name: Testing API
         run: npm run api-testing
       # Upload the contents of Test Results directory to workspace
       - name: Output the run Details
