@@ -47,14 +47,10 @@ jobs:
     steps:
       - name: Installing newman
         run: npm install newman
-<<<<<<< HEAD
       - run: npm install newman-reporter-htmlextra
       # Make directory to upload the test results
       - name: Make Directory for results
         run: mkdir -p testResults
-=======
-      - run: npm install newman-reporter-htmlextra  
->>>>>>> 43cac6611cf42821349958eb76d21e128e4d1960
 
   RunPOSTMANcollection:
 
@@ -65,10 +61,12 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
-<<<<<<< HEAD
       # Run POSTMAN collection
-=======
-      # Run Backend tests
->>>>>>> 43cac6611cf42821349958eb76d21e128e4d1960
       - name: Testing API 
         run: npm run api-testing
+      # Upload the contents of Test Results directory to workspace
+      - name: Output the run Details
+        uses: actions/upload-artifact@v2
+        with:
+          name: RunReports
+          path: testResults
