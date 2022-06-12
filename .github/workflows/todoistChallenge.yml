@@ -1,7 +1,7 @@
 # This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
-name: Github Actions
+name: Todoist Challenge
 
 on:
   push:
@@ -10,46 +10,57 @@ on:
     branches: [main]
 
 jobs:
-  build:
+  RunningEslint:
     runs-on: ubuntu-latest
-
     strategy:
       matrix:
         node-version: [14.x, 16.x]
-
     steps:
-      - name: Gti checkout
+      - name: Git checkout
         uses: actions/checkout@v2
+      # Install Node on the runner
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
-          
-  analysisCode:
-
-    needs: build
-    runs-on: ubuntu-latest
-    
-    steps:
+      # Install node_modules
       - name: Run Lint
         run: npm ci
       - run: npm run lint
-          
-  installNewman:
-
-    needs: analysisCode
-    runs-on: ubuntu-latest
-    
-    steps:
-      - name: Install newman
-        run: npm install newman
-
+      # Print current Node.js version
+      - run: node --version
+      # Print current npm version
+      - run: npm --version
+      # Print current Git version
+      - run: git --version
       
+  InstallingNewman:
+
+    needs: RunningEslint
+    runs-on: ubuntu-latest
+      # Install Node on the runner
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+      # Install the newman command line utility and also install the html extra reporter    
+    steps:
+      - name: Installing newman
+        run: npm install newman
+      - run: npm install newman-reporter-htmlextra
+      # Make directory to upload the test results
+      - name: Make Directory for results
+        run: mkdir -p testResults
+
   RunPOSTMANcollection:
 
-    needs: installNewman
+    needs: InstallingNewman
     runs-on: ubuntu-latest
-    
-    steps:   
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+      # Run POSTMAN collection
       - name: Testing API 
         run: npm run api-testing

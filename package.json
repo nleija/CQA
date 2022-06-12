@@ -18,7 +18,8 @@
     "test:configurationFile": "testcafe",
     "test:reportsRunner": "testcafe chrome tests/runner/*.js -L",
     "createReport": "node report-generator.js",
-    "api-testing": "newman run './api_testing/TodoistChallenge.postman_collection.json' -e './api_testing/Todoist-environment.postman_environment.json' --reporters=cli,htmlextra",
+    "api-testing2": "newman run './api_testing/TodoistChallenge.postman_collection.json' -e './api_testing/Todoist-environment.postman_environment.json' --reporter-htmlextra-export testResults/htmlreport.html --reporter-htmlextra-darkTheme > testResults/backendReport.html",
+    "api-testing": "newman run './api_testing/TodoistChallenge.postman_collection.json' -e './api_testing/Todoist-environment.postman_environment.json' -r htmlextra --reporter-htmlextra-export testResults/htmlreport.html --reporter-htmlextra-darkTheme  > testResults/runreport1.html",
     "test:reports": "testcafe chrome tests/pageObjectModel/tests -f 'Testing Today page' --skip-js-errors --reporter cucumber-json --reporter-json-folder=reports/htmlReports/jsonResults",
     "report:allure": "allure generate allure/allure-results --clean -o allure/allure-report && allure open allure/allure-report",
     "test:reportAllure": "npm run test:dataDriven && npm run report:allure"
