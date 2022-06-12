@@ -31,8 +31,6 @@ jobs:
       - run: node --version
       # Print current npm version
       - run: npm --version
-      # Print current Git version
-      - run: git --version
 
   install-newman:
     needs: run-eslint
