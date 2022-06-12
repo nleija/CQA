@@ -41,6 +41,7 @@ jobs:
     steps:
       - name: Installing newman
         run: npm install newman
+      - run: npm install newman-reporter-htmlextra  
 
   RunPOSTMANcollection:
 
