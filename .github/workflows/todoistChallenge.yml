@@ -35,7 +35,6 @@ jobs:
       - run: git --version
       
   InstallingNewman:
-
     needs: RunningEslint
     runs-on: ubuntu-latest
       # Install Node on the runner
@@ -53,7 +52,6 @@ jobs:
         run: mkdir -p testResults
 
   RunPOSTMANcollection:
-
     needs: InstallingNewman
     runs-on: ubuntu-latest
     steps:
