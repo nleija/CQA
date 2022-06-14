@@ -5,13 +5,26 @@ node_modules
 logs
 *.log
 
-# Ignore the build directory
-/dist
+# Ignore folders
+allure/
+configuration_file/
+my-Reporter/
+reports/
+screenshots/
+testResults/
 
 # The file containing environment variables 
 .env
 
+*.DS_Store
 *.txt
 *.rtf
+*.xml
 *.xls
+*.jar
+*.png
+*.gif
+*.jpeg
+*.mp4
+*.mp3
 ./Session1/

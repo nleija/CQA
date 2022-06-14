@@ -1,5 +1,0 @@
-"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
-"passed","Fri Jun 10 11:49:08 CDT 2022","Fri Jun 10 11:49:31 CDT 2022","23064","","Testing Data Driven","","Testing Data Driven","Login Page Validation - Today","Login Page Validation - Today",""
-"failed","Fri Jun 10 11:52:00 CDT 2022","Fri Jun 10 11:52:08 CDT 2022","8349","","Testing Today page","","Testing Today page","As a user I should be able to delete all existing tasks","As a user I should be able to delete all existing tasks",""
-"failed","Fri Jun 10 11:51:52 CDT 2022","Fri Jun 10 11:52:12 CDT 2022","20347","","Testing Today page","","Testing Today page","As a user I should be able to add one task","As a user I should be able to add one task",""
-"passed","Fri Jun 10 11:49:21 CDT 2022","Fri Jun 10 11:49:35 CDT 2022","13695","","Testing Data Driven","","Testing Data Driven","Login Page Validation - Wrong email or password","Login Page Validation - Wrong email or password",""

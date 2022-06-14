@@ -5,7 +5,7 @@ import { Selector, fixture, test } from "testcafe"
 import { URLS, TASKS } from "../data/Constants"
 import { STANDARD_USER } from "../data/Roles"
 
-fixture("Testing Today page")
+fixture("Today page")
   .page(URLS.LOGIN_URL)
   .beforeEach(async (t) => {
     // function for a successfull login process
