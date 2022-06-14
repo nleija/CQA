@@ -1,0 +1,34 @@
+# Ignore the node_modules directory
+node_modules/
+
+# Ignore Logs
+logs
+*.log
+
+# Ignore the build directory
+/dist
+
+# The file containing environment variables 
+.env
+
+# ignore ALL files in ANY directory named temp
+temp/
+
+#ignore folders
+allure/
+Session1/
+
+#ignore file type
+.DS_Sotre
+Thumbs.*
+*.tmp
+*.temp
+*.png
+*.gif
+*.jpg
+*.jpeg
+*.mp3
+*.mp4
+*.xlm
+*.xls
+
