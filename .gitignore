@@ -1,5 +1,5 @@
 # Ignore the node_modules directory
-node_modules/
+**/node_modules
 
 # Ignore Logs
 logs
@@ -14,9 +14,13 @@ logs
 # ignore ALL files in ANY directory named temp
 temp/
 
+# ignore data driven
+**/data.json
+
 #ignore folders
 allure/
-Session1/
+tests/Session1/
+**/dataDriven/
 
 #ignore file type
 .DS_Store/

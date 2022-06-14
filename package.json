@@ -7,14 +7,13 @@
     "test-login": "testcafe chrome tests/pageObjectModel/tests -f 'Login page' --test-meta type=smoke --reporter allure",
     "test-today": "testcafe chrome tests/pageObjectModel/tests -f 'Today page' --reporter allure",
     "test-todayBS": "testcafe 'browserstack:chrome@102.0:OS X Big Sur' tests/pageObjectModel/tests -f 'Testing Today page' --reporter allure",
-    "test:dataDriven": "testcafe chrome tests/pageObjectModel/dataDriven/*.js --skip-js-errors  --reporter allure",
     "lint": "eslint tests/pageObjectModel/",
     "test:configurationFile": "testcafe",
     "createReport": "node report-generator.js",
     "api-testing": "newman run './api_testing/TodoistChallenge.postman_collection.json' -e './api_testing/Todoist-environment.postman_environment.json' -r htmlextra --reporter-htmlextra-export testResults/htmlreport.html --reporter-htmlextra-lightTheme  > testResults/backendReport.html",
     "test:reports": "testcafe chrome tests/pageObjectModel/tests -f 'Testing Today page' --skip-js-errors --reporter cucumber-json --reporter-json-folder=reports/htmlReports/jsonResults",
     "report:allure": "allure generate allure/allure-results --clean -o allure/allure-report && allure open allure/allure-report",
-    "test:reportAllure": "npm run test:dataDriven && npm run report:allure"
+    "test:reportAllure": "npm run test-today && npm run report:allure"
   },
   "repository": {
     "type": "git",
