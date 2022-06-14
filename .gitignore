@@ -19,8 +19,9 @@ allure/
 Session1/
 
 #ignore file type
-.DS_Sotre
+.DS_Store/
 Thumbs.*
+*.txt
 *.tmp
 *.temp
 *.png
