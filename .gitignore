@@ -23,7 +23,7 @@ tests/Session1/
 **/dataDriven/
 
 #ignore file type
-.DS_Store/
+.DS_Store
 Thumbs.*
 *.txt
 *.tmp
