@@ -221,7 +221,7 @@ test.meta("type", "negativeLogin")(
   }
 )
 
-test.only("As a user, I should be able to log in successfully by provinding valid credentials", async (t) => {
+test.only("As a user, I should be able to log in successfully by provinding valid credentials (Roles)", async (t) => {
   await t.useRole(STANDARD_USER)
   await t.expect(TodayPage.todayHeader.exists).ok
 })
