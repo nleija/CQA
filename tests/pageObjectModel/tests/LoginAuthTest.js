@@ -221,20 +221,15 @@ test.meta("type", "negativeLogin")(
   }
 )
 
-test.meta("type", "smoke")(
-  "As a user, I should be able to log in successfully by provinding valid credentials",
-  async (t) => {
-    await t
-      .useRole(STANDARD_USER)
-      .expect(TodayPage.todayHeader.exists.innerText)
-      .eql("Today")
-  }
-)
+test.only("As a user, I should be able to log in successfully by provinding valid credentials", async (t) => {
+  await t.useRole(STANDARD_USER)
+  await t.expect(TodayPage.todayHeader.exists).ok
+})
 
-test.meta("type", "init")("FORM - Successfully Login", async (t) => {
+test("Successfull Login", async (t) => {
   LoginPageAuth.submitLoginForm(
     CREDENTIALS.STANDARD_USER.USERNAME,
     CREDENTIALS.STANDARD_USER.PASSWORD
   )
-  await t.expect(TodayPage.todayHeader.innerText).eql("Today")
+  await t.expect(TodayPage.todayHeader.exists).ok
 })
