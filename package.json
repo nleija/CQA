@@ -4,7 +4,7 @@
   "description": "FE and BE Testing for Todoist",
   "main": "index.js",
   "scripts": {
-    "testLP": "testcafe chrome:headless tests/pageobjectModel/tests/LoginAuthTest.js --reporter allure",
+    "testLP": "testcafe chrome tests/pageobjectModel/tests/LoginAuthTest.js --reporter allure",
     "lint": "eslint tests/pageObjectModel/",
     "test:runSmoke": "testcafe chrome tests/pageObjectModel/tests/*.js --test-meta type=smoke",
     "test-login": "testcafe chrome tests/pageObjectModel/tests -f 'Login page' --test-meta env=prod --reporter allure",
