@@ -4,7 +4,7 @@
   "description": "FE and BE Testing for Todoist",
   "main": "index.js",
   "scripts": {
-    "testLP": "testcafe chrome tests/pageobjectModel/tests/LoginAuthTest.js --reporter allure",
+    "testLP": "testcafe chrome:headless tests/pageobjectModel/tests/LoginAuthTest.js -r xunit:res.xml",
     "lint": "eslint tests/pageObjectModel/",
     "test:runSmoke": "testcafe chrome tests/pageObjectModel/tests/*.js --test-meta type=smoke",
     "test-login": "testcafe chrome tests/pageObjectModel/tests -f 'Login page' --test-meta env=prod --reporter allure",
@@ -36,7 +36,8 @@
     "testcafe-browser-provider-browserstack": "^1.14.0",
     "testcafe-reporter-allure": "^1.0.5",
     "testcafe-reporter-cucumber-json": "^6.3.0",
-    "testcafe-reporter-html": "^1.4.6"
+    "testcafe-reporter-html": "^1.4.6",
+    "testcafe-reporter-xunit": "^2.2.1"
   },
   "devDependencies": {
     "allure-commandline": "^2.17.2",
