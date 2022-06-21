@@ -7,7 +7,11 @@ class TodayPage {
     this.todayHeader = Selector("span.simple_content")
     this.topMenuBar = Selector("div#flashdiv#top_bar_inner")
     this.addTaskEmptyBtn = Selector("button.empty-state-button")
+    this.taskName = Selector("div.DraftEditor-editorContainer > div")
+    this.todayButton = Selector("#list_holder>ul>li:nth-of-type(2)")
     this.plusAddBtn = Selector("button.plus_add_button")
+    this.item = Selector(".task_list_item__content")
+    this.confirmTaskButton = Selector(".reactist_button")
     this.confirmAddTaskBtn = Selector(
       "div[data-testid=task-editor-action-buttons]>button:nth-of-type(2)"
     )
@@ -17,9 +21,11 @@ class TodayPage {
     this.allTasksNames = Selector(
       "div.task_list_item__content__wrapper > div > div"
     )
+    this.allTasks = Selector("div.task_list_item__body>div>div>div>div")
     //this.anyTaskName = Selector("div.task_list_item__body")
     this.taskNameSel = Selector("div.markdown_content.task_content")
     this.taskDetailsModal = Selector("section.reactist_modal_box__body")
+    this.createTaskBtn = Selector(".plus_add_button")
     this.moreActionsBtn = Selector(
       "div[data-testid=button-container]>div>div>button>svg>g"
     )
@@ -32,24 +38,37 @@ class TodayPage {
   }
 
   async addTask(description, name) {
+    await t.click(AddNewTaskPage.addTaskSignIA)
+    await t.typeText(AddNewTaskPage.taskDescriptionInputIA, description)
+    await t.typeText(AddNewTaskPage.taskNameInputIA, name)
+    await t.click(this.confirmAddTaskBtn)
+    await t.click(this.cancelAddTaskBtn)
+  }
+
+  async createOneTask(name) {
+    await t.click(this.createTaskBtn)
+    await t.typeText(this.taskName, name, { paste: true })
+    await t.click(this.confirmAddTaskBtn)
+    await t.wait(1000)
+  }
+
+  async deleteTask() {
     await t
-      //.click(AddNewTaskPage.addTaskSignIA)
-      .wait(2000)
-      .typeText(AddNewTaskPage.taskDescriptionInputIA, description)
-      .typeText(AddNewTaskPage.taskNameInputIA, name)
-      .click(this.confirmAddTaskBtn)
-      .wait(3000)
-    //.click(AddNewTaskPage.cancelTaskBtn)
+      .rightClick(this.item)
+      .wait(1000)
+      .click(this.deleteTaskOption)
+      .click(this.confirmDeleteButton)
   }
 
   async deleteAllTasks() {
     let i = 0
     let numTasks = await this.allTasksNames.count
     console.log(numTasks)
-    if (numTasks > 0) {
+    if (numTasks >= 1) {
       do {
         await t
           .rightClick(this.taskList)
+          .wait(1000)
           .click(this.deleteTaskOption)
           .click(this.confirmDeleteButton)
         i++
@@ -65,8 +84,19 @@ class TodayPage {
     //}
   }
 
-  async logOut() {
-    await t.click(this.buttonSettings).click(this.logoutOption)
+  async deleteAll() {
+    await t.click(this.todayButton)
+    const numTasks = await this.item.count
+    if (numTasks >= 1) {
+      while (await this.item.count) {
+        //await this.deleteTask()
+        await t.rightClick(this.item)
+        await t.wait(1000)
+        await t.click(this.deleteTaskOption)
+        await t.click(this.confirmDeleteButton)
+      }
+      await t.wait(1000)
+    }
   }
 }
 

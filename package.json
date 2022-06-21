@@ -6,16 +6,18 @@
   "scripts": {
     "testLP": "testcafe chrome:headless tests/pageobjectModel/tests/LoginAuthTest.js -r xunit:res.xml",
     "lint": "eslint tests/pageObjectModel/",
-    "test:runSmoke": "testcafe chrome tests/pageObjectModel/tests/*.js --test-meta type=smoke",
-    "test-login": "testcafe chrome tests/pageObjectModel/tests -f 'Login page' --test-meta env=prod --reporter allure",
-    "test-today": "testcafe chrome tests/pageObjectModel/tests -f 'Today page' --reporter allure",
-    "test-todayBS": "testcafe 'browserstack:chrome@102.0:OS X Big Sur' tests/pageObjectModel/tests -f 'Testing Today page' --reporter allure",
-    "test:configurationFile": "testcafe",
+    "test:runSmoke": "testcafe chrome tests/pageObjectModel/tests --test-meta type=smoke",
+    "test-login": "testcafe chrome tests/pageObjectModel/tests/*.js -f 'Login page' --skip-js-errors",
+    "test-today": "testcafe chrome tests/pageObjectModel/tests/*.js -f 'Today page' --skip-js-errors --reporter allure",
+    "test-todayBS": "testcafe 'browserstack:firefox@101.0:Windows 11' tests/pageObjectModel/tests -f 'Today page'",
+    "test-task": "testcafe chrome tests/pageObjectModel/tests --test-meta feature=task",
+    "test-smoke": "testcafe chrome tests/pageObjectModel/tests --test-meta type=smoke --reporter allure",
     "createReport": "node report-generator.js",
     "api-testing": "newman run './api_testing/TodoistChallenge.postman_collection.json' -e './api_testing/Todoist-environment.postman_environment.json' -r htmlextra --reporter-htmlextra-export testResults/htmlreport.html --reporter-htmlextra-lightTheme  > testResults/backendReport.html",
     "test:reports": "testcafe chrome tests/pageObjectModel/tests -f 'Testing Today page' --skip-js-errors --reporter cucumber-json --reporter-json-folder=reports/htmlReports/jsonResults",
     "report:allure": "allure generate allure/allure-results --clean -o allure/allure-report && allure open allure/allure-report",
-    "test:reportAllure": "npm run test && npm run report:allure"
+    "test:e2eAllure": "npm run test-today && npm run report:allure",
+    "test:loginMulti": "testcafe chrome tests/pageObjectModel/tests/*.js --test-meta type=init "
   },
   "repository": {
     "type": "git",
@@ -29,30 +31,24 @@
   "author": "Norma Leija",
   "license": "ISC",
   "dependencies": {
-    "chai": "^4.3.6",
-    "dotenv": "^16.0.1",
-    "newman-reporter-htmlextra": "^1.22.9",
-    "testcafe": "^1.18.6",
-    "testcafe-browser-provider-browserstack": "^1.14.0",
-    "testcafe-reporter-allure": "^1.0.5",
-    "testcafe-reporter-cucumber-json": "^6.3.0",
-    "testcafe-reporter-html": "^1.4.6",
-    "testcafe-reporter-xunit": "^2.2.1"
+    "browserstack": "1.6.1",
+    "chai": "4.3.6",
+    "dotenv": "16.0.1",
+    "newman-reporter-htmlextra": "1.22.9",
+    "testcafe": "1.18.6",
+    "testcafe-browser-provider-browserstack": "1.14.0",
+    "testcafe-reporter-allure": "1.0.5",
+    "testcafe-reporter-cucumber-json": "6.3.0",
+    "testcafe-reporter-html": "1.4.6",
+    "testcafe-reporter-xunit": "2.2.1"
   },
   "devDependencies": {
-    "allure-commandline": "^2.17.2",
-    "eslint": "^8.17.0",
-    "eslint-plugin-react": "^7.29.4",
-    "eslint-plugin-testcafe": "^0.2.1",
-    "mocha-allure-reporter": "^1.4.0",
-    "multiple-cucumber-html-reporter": "^1.21.2",
-    "newman": "^5.3.2"
-  },
-  "bugs": {
-    "url": "https://github.com/nleija/CQA/issues"
-  },
-  "homepage": "https://github.com/nleija/CQA#readme",
-  "directories": {
-    "test": "tests"
+    "allure-commandline": "2.17.2",
+    "eslint": "8.17.0",
+    "eslint-plugin-react": "7.29.4",
+    "eslint-plugin-testcafe": "0.2.1",
+    "mocha-allure-reporter": "1.4.0",
+    "multiple-cucumber-html-reporter": "1.21.2",
+    "newman": "5.3.2"
   }
 }

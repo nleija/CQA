@@ -1,25 +1,28 @@
 import TodayPage from "../pages/TodayPage"
-import LoginPageAuth from "../pages/LoginPageAuth"
-import AddNewTaskPage from "../pages/AddNewTaskPage"
 import { Selector, fixture, test } from "testcafe"
 import { URLS, TASKS } from "../data/Constants"
 import { STANDARD_USER } from "../data/Roles"
 
 fixture("Today page")
+  .meta("Regression", "Mobile")
   .page(URLS.LOGIN_URL)
   .beforeEach(async (t) => {
     // function for a successfull login process
     await t.useRole(STANDARD_USER).wait(5000)
+    const numTasks = await TodayPage.item.count
+    if (numTasks > 0) {
+      await TodayPage.deleteAllTasks()
+    }
   })
-  .afterEach(async () => {
-    LoginPageAuth.doLogout()
-  })
-  .afterEach(async () => {
-    //function to logout
-    await TodayPage.logOut()
+  .afterEach(async (t) => {
+    const numTasks = await TodayPage.item.count
+    if (numTasks >= 1) {
+      await t.rightClick(TodayPage.item)
+      await TodayPage.deleteAll()
+    }
   })
 
-test.meta("type", "smoke")(
+test.meta({ feature: "task", type: "smoke" })(
   "As a registered user successfully logged in, I should be able to see the Today Page loaded",
   async (t) => {
     await t
@@ -31,28 +34,36 @@ test.meta("type", "smoke")(
 )
 
 test.only("As a user I should be able to add one task", async (t) => {
-  await t.click(TodayPage.plusAddBtn)
   // Function to add a new task
-  t.wait(2000)
-  t.TodayPage.addTask(TASKS.SINGLE.DESCRIPTION, TASKS.SINGLE.NAME)
+  await TodayPage.addTask(TASKS.SINGLE.DESCRIPTION, TASKS.SINGLE.NAME)
   const allTasks = Selector("div.task_list_item__body>div>div>div>div")
   const taskAdded = allTasks.withExactText(TASKS.SINGLE.NAME).toString()
   await t.expect(taskAdded).exists
-  console.log("New task was successfully created.")
 })
-// Function to delete the task just added
-/* .after(async (t) => {
-    let prevTasks = TodayPage.taskList.exists
-    if (prevTasks == true) {
-      await t
-        .rightClick(TodayPage.taskList)
-        .click(TodayPage.deleteTaskOption)
-        .click(TodayPage.confirmDeleteButton)
-      console.log("After created, the New Task is deleted.")
-    }
-  }) */
 
-test("As a user I should  be able to delete one task", async (t) => {
+test.meta("type", "smoke")(
+  "As a user, I should be able to add one task by providig only the task name",
+  async () => {
+    await TodayPage.createOneTask(TASKS.SINGLE.NAME)
+  }
+)
+
+test.only("As a user I should be able to add 10 new tasks", async (t) => {
+  // Function to add new tasks
+  let i = 1
+  do {
+    const taskName = TASKS.GROUP.NAME + ` ${i}`
+    const taskDescription = TASKS.GROUP.DESCRIPTION + ` ${i}`
+    await TodayPage.addTask(taskDescription, taskName)
+    const allTasks = TodayPage.allTasks
+    const taskAdded = allTasks.withExactText(taskName).toString()
+    await t.expect(taskAdded).exists
+    i++
+  } while (i < TASKS.AMOUNT_TASKS + 1)
+  await t.expect(TodayPage.item.count).eql(TASKS.AMOUNT_TASKS)
+})
+
+test.skip("As a user I should  be able to delete one task", async (t) => {
   const cancelButtonExists = Selector(TodayPage.cancelAddTaskBtn).exists
   const listOfTasks = Selector(TodayPage.taskList).exists
   if (cancelButtonExists == true) {
@@ -73,24 +84,7 @@ test("As a user I should  be able to delete one task", async (t) => {
   console.log("The task was successfully deleted.")
 })
 
-test("As a user I should be able to add 10 new tasks", async (t) => {
-  await t.click(AddNewTaskPage.addTaskSignIA).wait(2000)
-  let i = 1
-  do {
-    const taskName = TASKS.GROUP.NAME + ` ${i}`
-    const taskDescription = TASKS.GROUP.DESCRIPTION + ` ${i}`
-    TodayPage.addTask(taskDescription, taskName)
-    await t
-      //.wait(2000)
-      .expect(Selector(TodayPage.taskNameSel).withExactText(TASKS.GROUP.NAME))
-      .ok()
-    i++
-  } while (i < 11)
-
-  await t.click(AddNewTaskPage.cancelTaskBtn)
-})
-
-test.only("As a user I should be able to delete all existing tasks", async (t) => {
+test.skip("As a user I should be able to delete all existing tasks", async (t) => {
   let i = 0
   let numTasks = await TodayPage.taskList.count
   if (numTasks > 0) {
@@ -106,24 +100,7 @@ test.only("As a user I should be able to delete all existing tasks", async (t) =
   await t.expect(allTasks).eql(0)
 })
 
-test("As a user I should be able to add 10 new tasks", async (t) => {
-  await t.click(AddNewTaskPage.addTaskSignIA).wait(2000)
-  let i = 1
-  do {
-    const taskName = `Task No. ${i}`
-    const taskDescription = `Description for task - ${i}`
-    TodayPage.addTask(taskDescription, taskName)
-    await t
-      .wait(1000)
-      .expect(Selector(TodayPage.taskNameSel).withExactText("task 003"))
-      .ok()
-    i++
-  } while (i < 11)
-
-  await t.wait(2000).click(AddNewTaskPage.cancelTaskBtn)
-})
-
-test("As a user I should be able to delete all tasks listed in the Today page", async () => {
+test.skip("As a user I should be able to delete all tasks listed in the Today page", async () => {
   TodayPage.deleteAllTasks()
   let numTasks = await TodayPage.allTasksNames.count
   console.log("Tasks listed = " + numTasks)

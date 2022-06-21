@@ -22,6 +22,7 @@ export const TASKS = {
     NAME: "Task No. ",
     DESCRIPTION: "Description for the Task No. ",
   },
+  AMOUNT_TASKS: 10,
 }
 
 export const CREDENTIALS = {

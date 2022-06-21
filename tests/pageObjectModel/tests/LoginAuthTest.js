@@ -10,7 +10,7 @@ import {
   WRONG_USER6,
 } from "../data/Roles"
 
-fixture("Login page").page`${URLS.LOGIN_URL}`
+fixture("Login page").meta("type", "init").page`${URLS.LOGIN_URL}`
 
 test.meta("type", "init")(
   "As a user I should be able to see the Login Autorization Page loaded",
@@ -208,7 +208,7 @@ test.meta("type", "negativeLogin")(
   }
 )
 
-test.meta("type", "negativeLogin")(
+test.meta("Env", "Testing")(
   "As a registered user, I should not be able to login by providing invalid password",
   async (t) => {
     LoginPageAuth.submitLoginForm(
@@ -232,4 +232,4 @@ test("Successfull Login", async (t) => {
     CREDENTIALS.STANDARD_USER.PASSWORD
   )
   await t.expect(TodayPage.todayHeader.exists).ok
-})
+}).meta({ Env: "Testing", type: "smoke" })
