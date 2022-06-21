@@ -7,7 +7,7 @@
     "testLP": "testcafe chrome:headless tests/pageobjectModel/tests/LoginAuthTest.js -r xunit:res.xml",
     "lint": "eslint tests/pageObjectModel/",
     "test:runSmoke": "testcafe chrome tests/pageObjectModel/tests --test-meta type=smoke",
-    "test-login": "testcafe chrome tests/pageObjectModel/tests/*.js -f 'Login page' --skip-js-errors",
+    "test-login": "testcafe chrome tests/pageObjectModel/tests/*.js -f 'Login page' --skip-js-errors ",
     "test-today": "testcafe chrome tests/pageObjectModel/tests/*.js -f 'Today page' --skip-js-errors --reporter allure",
     "test-todayBS": "testcafe 'browserstack:firefox@101.0:Windows 11' tests/pageObjectModel/tests -f 'Today page'",
     "test-task": "testcafe chrome tests/pageObjectModel/tests --test-meta feature=task",
@@ -17,7 +17,7 @@
     "test:reports": "testcafe chrome tests/pageObjectModel/tests -f 'Testing Today page' --skip-js-errors --reporter cucumber-json --reporter-json-folder=reports/htmlReports/jsonResults",
     "report:allure": "allure generate allure/allure-results --clean -o allure/allure-report && allure open allure/allure-report",
     "test:e2eAllure": "npm run test-today && npm run report:allure",
-    "test:loginMulti": "testcafe chrome tests/pageObjectModel/tests/*.js --test-meta type=init "
+    "test:loginMulti": "testcafe chrome tests/pageObjectModel/tests/*.js --test-meta type=init"
   },
   "repository": {
     "type": "git",
